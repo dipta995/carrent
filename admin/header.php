@@ -1,5 +1,8 @@
 <?php
  
+  include '../db.php';
+
+ 
 session_start();
 if($_SESSION['flag']=="0" ){
  

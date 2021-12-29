@@ -1,7 +1,10 @@
+<?php
+  include 'db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Carbook - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Carbook </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -41,8 +44,19 @@
 	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
-	          <li class="nav-item"><a href="car.html" class="nav-link">Cars</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
+<?php
+
+							session_start();
+	          if (isset($_SESSION['flag'])=='1') { ?>
+                    <li class="nav-item"><a class="nav-link" href="?logout=logout">Logout</a></li>
+                    <?php }else{ ?>   
+                     <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
+                <?php } ?>
+
+
+
+	          
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>

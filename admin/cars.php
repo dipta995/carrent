@@ -14,9 +14,9 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Title</th>
-                                            <th>Price/Hour</th>
-                                            <th>Included Price</th>
-                                            <th>Version</th>
+                                            <th>Service Charge</th>
+                                            <th>Milage</th>
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -24,22 +24,48 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Title</th>
-                                            <th>Price/Hour</th>
-                                            <th>Included Price</th>
-                                            <th>Version</th>
+                                            <th>Service Charge</th>
+                                            <th>Milage</th>
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php 
+
+
+                                         if (isset($_GET['delid'])) {
+                                             $delid = $_GET['delid'];
+                                             $DELquery ="UPDATE cars  
+                                                SET
+                                                flag       = '3'
+                                             WHERE id = $delid";
+                                               $delete = $con->query($DELquery);
+                                               if ($delete) {
+                                                   echo "<script>window.location='cars.php';</script>";
+                                               }
+                                         }
+                                      
+                                                 $query = "SELECT * FROM cars where flag=0 Order By id desc";
+                                                 $result = $con->query($query);
+                                                 if ($result->num_rows > 0) {
+                                                     foreach ($result as $key => $value) {
+                                                         
+                                        ?>
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td><?php echo $value['id']; ?></td>
+                                            <td><?php echo $value['name']." ".$value['model'] ?></td>
+                                            <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
+                                            <td><?php echo $value['mileage']; ?> KM/L</td>
+                                            <td><img style="height:60px;width: 60px;" src="../<?php echo $value['image']; ?>"></td>
+                                             
+                                            <td>
+                                                <a href="editcar.php?editid=<?php echo $value['id']; ?>" class="btn btn-info">Edit</a>
+                                                <a href="?delid=<?php echo $value['id']; ?>" class="btn btn-danger">Delete</a>
+                                                <a target="_blank" href="../car-single.php?carid=<?php echo $value['id']; ?>" class="btn btn-success">Show Details</a>
+                                            </td>
                                         </tr>
- 
+                                    <?php }} ?>
                                      
                                
                                     </tbody>
