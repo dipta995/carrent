@@ -45,10 +45,13 @@
 	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
 	          <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
-<?php
-
-							session_start();
-	          if (isset($_SESSION['flag'])=='1') { ?>
+            <?php
+            session_start();
+if (isset($_GET['logout'])) {
+  session_destroy();
+  echo "<script>window.location='index.php';</script>";
+  }
+	          if (isset($_SESSION['flag'])==true) { ?>
                     <li class="nav-item"><a class="nav-link" href="?logout=logout">Logout</a></li>
                     <?php }else{ ?>   
                      <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>

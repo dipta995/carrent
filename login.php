@@ -30,8 +30,11 @@
  					<!-- PHP BLOCK -->
 		<?php
 include 'db.php';
- 
-		  if(isset($_POST['create'])){
+ if (isset($_SESSION['active'])=="active") {
+	 
+	echo "<script>window.location='index.php';</script>";
+	}
+			  if(isset($_POST['create'])){
                         $name = $_POST['name'];
                         $email = $_POST['email'];
                         $phone = $_POST['phone'];
@@ -98,34 +101,34 @@ include 'db.php';
 
 		                    }
 
-					                    if (isset($_POST['login'])) {
-					                    	$email = $_POST['email'];
-					                        $password = $_POST['password'];
-                                            $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-                                            
-                                            $result = $con->query($query);
-                                    
-                                            if ($result->num_rows > 0) {
-																										session_start();
-                                            	 
-                                                $value = mysqli_fetch_array($result);
-                                                //session_destroy();
-                                                $_SESSION['name'] = $value['name'];
-                                                $_SESSION['email'] = $value['email'];
-                                                $_SESSION['phone'] = $value['phone'];
-                                                
-                                                $_SESSION['id'] = $value['id'];
-                                                $_SESSION['flag'] = $value['flag'];
-                                                if ($value['flag']=='1') {
-                                                  header('Location:admin/index.php');
-                                                }else{
-                                                  header('Location:index.php');
-                                                }
-                                               
-                                                 
-                                             }else{
-                                                  echo $txt = "<span class='error-msg'>Email Or Password is Unmatch</span>";
-                                             }
+		if (isset($_POST['login'])) {
+			$email = $_POST['email'];
+			$password = $_POST['password'];
+			$query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+			
+			$result = $con->query($query);
+	
+			if ($result->num_rows > 0) {
+																		session_start();
+					
+				$value = mysqli_fetch_array($result);
+				//session_destroy();
+				$_SESSION['name'] = $value['name'];
+				$_SESSION['email'] = $value['email'];
+				$_SESSION['phone'] = $value['phone'];
+				$_SESSION['active'] = "active";
+				$_SESSION['id'] = $value['id'];
+				$_SESSION['flag'] = $value['flag'];
+				if ($value['flag']=='1') {
+					header('Location:admin/index.php');
+				}else{
+					header('Location:index.php');
+				}
+				
+					
+				}else{
+					echo $txt = "<span class='error-msg'>Email Or Password is Unmatch</span>";
+				}
                     }
                     
 		?>
@@ -135,7 +138,8 @@ include 'db.php';
 			<div class="row">
 				<div class="col-md-5">
  					<form method="post" enctype="multipart/form-data">
-						<fieldset>							
+						<fieldset>				
+								
 							<p class="text-uppercase pull-center"> SIGN UP.</p>	
  							<div class="form-group">
 								<input type="text" name="name" class="form-control input-lg" placeholder="Name">
