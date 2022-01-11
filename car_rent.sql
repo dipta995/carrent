@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2021 at 02:14 PM
+-- Generation Time: Jan 11, 2022 at 07:05 PM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,6 +83,32 @@ CREATE TABLE `category` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `car_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `pickup_location` text NOT NULL,
+  `dropup_location` text NOT NULL,
+  `trip_loop` tinyint(4) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `car_id`, `user_id`, `pickup_location`, `dropup_location`, `trip_loop`, `status`, `created_at`) VALUES
+(1, 7, 0, '', '', 0, 0, '2022-01-11 17:52:56'),
+(2, 7, 0, '', '', 0, 0, '2022-01-11 17:53:06'),
+(3, 7, 3, '', 'loo', 1, 0, '2022-01-11 17:56:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -104,7 +130,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `password`, `national_id`, `image`, `flag`, `created_at`) VALUES
-(2, 'Dipta Dey', 'dipta995@gmail.com', '01632315608', 'dhaka', '12345678', 2147483647, 'img/a82583bc9a.jpg', 1, '2021-12-18 15:18:23');
+(2, 'Dipta Dey', 'dipta995@gmail.com', '01632315608', 'dhaka', '12345678', 2147483647, 'img/a82583bc9a.jpg', 1, '2021-12-18 15:18:23'),
+(3, 'da', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 2147483647, 'img/32a0b07a28.jpg', 0, '2022-01-10 13:51:27');
 
 --
 -- Indexes for dumped tables
@@ -121,6 +148,12 @@ ALTER TABLE `cars`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -145,10 +178,16 @@ ALTER TABLE `category`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
