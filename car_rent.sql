@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2022 at 07:05 PM
+-- Generation Time: Jan 14, 2022 at 06:49 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -71,18 +71,6 @@ INSERT INTO `cars` (`id`, `name`, `model`, `mileage`, `seats`, `fuel`, `service_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `cat_id` int(11) NOT NULL,
-  `cat_name` varchar(200) NOT NULL,
-  `flag` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
@@ -92,6 +80,8 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `pickup_location` text NOT NULL,
   `dropup_location` text NOT NULL,
+  `date` varchar(191) NOT NULL,
+  `time` varchar(191) NOT NULL,
   `trip_loop` tinyint(4) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -101,10 +91,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `car_id`, `user_id`, `pickup_location`, `dropup_location`, `trip_loop`, `status`, `created_at`) VALUES
-(1, 7, 0, '', '', 0, 0, '2022-01-11 17:52:56'),
-(2, 7, 0, '', '', 0, 0, '2022-01-11 17:53:06'),
-(3, 7, 3, '', 'loo', 1, 0, '2022-01-11 17:56:18');
+INSERT INTO `orders` (`id`, `car_id`, `user_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `status`, `created_at`) VALUES
+(9, 5, 3, 'ju', 'loo', '2022-01-16', '11:53', 0, 0, '2022-01-14 15:54:53');
 
 -- --------------------------------------------------------
 
@@ -144,12 +132,6 @@ ALTER TABLE `cars`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`cat_id`);
-
---
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -172,16 +154,10 @@ ALTER TABLE `cars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

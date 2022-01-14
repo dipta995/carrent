@@ -109,7 +109,7 @@ include 'db.php';
 			$result = $con->query($query);
 	
 			if ($result->num_rows > 0) {
-																		session_start();
+				session_start();
 					
 				$value = mysqli_fetch_array($result);
 				//session_destroy();

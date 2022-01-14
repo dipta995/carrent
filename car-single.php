@@ -302,12 +302,14 @@
 				</div>
       </div>
     </section>
+	<div>
+					 
 
     <section class="ftco-section ftco-no-pt">
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          	<span class="subheading">Choose Car</span>
+          	<span class="subheading"><a class="btn btn-primary py-2 ml-1" href="order.php?carid=<?php echo $value['id']; ?>">Book Now</a></span>
             <h2 class="mb-2">Related Cars</h2>
           </div>
         </div>
