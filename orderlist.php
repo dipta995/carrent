@@ -36,7 +36,7 @@
                      
             ?>
             <tr>
-                <td><?php echo $val['id']; ?></td>
+                <td><?php echo $val['Oid']; ?></td>
                 <td><?php echo $val['name']; ?> <img style="height:50px; width:50px;" src="<?php echo $val['image']; ?>" alt=""></td>
                 <td><?php echo $val['pickup_location']."/".$val['dropup_location']; ?></td>
                 <td><?php echo $val['date']."/".$val['time']; ?></td>

@@ -309,7 +309,13 @@
     	<div class="container">
     		<div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+
+		  <?php if ($value['flag']==0) {
+			   ?>
           	<span class="subheading"><a class="btn btn-primary py-2 ml-1" href="order.php?carid=<?php echo $value['id']; ?>">Book Now</a></span>
+			  <?php } else{?>
+				<span class="subheading"><a class="btn btn-danger py-2 ml-1" href="#">Out of Stock</a></span>
+				<?php } ?>
             <h2 class="mb-2">Related Cars</h2>
           </div>
         </div>
