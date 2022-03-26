@@ -44,7 +44,7 @@
 
                         if (isset($_GET['delid'])) {
                             $delid = $_GET['delid'];
-                            $DELquery = "DELETE FROM orders WHERE id = $delid";
+                            $DELquery = "DELETE FROM orders WHERE Oid = $delid";
                             $delete = $con->query($DELquery);
                             if ($delete) {
                                 echo "<script>window.location='car-booking.php';</script>";

@@ -44,7 +44,7 @@
 
                         if (isset($_GET['delid'])) {
                             $delid = $_GET['delid'];
-                            $DELquery = "DELETE FROM orders WHERE Oid = $delid";
+                            $DELquery = "DELETE FROM orders WHERE id = $delid";
                             $delete = $con->query($DELquery);
                             if ($delete) {
                                 echo "<script>window.location='car-booking.php';</script>";
@@ -56,14 +56,14 @@
                             $editquery = "UPDATE orders  
                             SET
                             status       = '2'
-                         WHERE Oid = $confirmid";
+                         WHERE id = $confirmid";
                             $edit = $con->query($editquery);
                             if ($edit) {
                                 echo "<script>window.location='last-rent.php';</script>";
                             }
                         }
 
-                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN users ON users.id = orders.user_id where orders.status=1 Order By orders.Oid asc";
+                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN users ON users.id = orders.user_id where orders.status=2 Order By orders.Oid asc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
@@ -85,7 +85,7 @@
                                         } elseif ($value['trip_loop'] == 1) {
                                             echo "Return Home";
                                         } else {
-                                            echo "something went wrong";
+                                             
                                         }
                                         ?>
                                     </td>
@@ -102,11 +102,7 @@
 
                                     </td>
 
-                                    <td>
-                                        <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info">Confirm</a>
-                                       
-                   
-                                    </td>
+                                   
                                 </tr>
                         <?php }
                         } ?>

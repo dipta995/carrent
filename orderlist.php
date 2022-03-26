@@ -13,62 +13,84 @@
 		        </div>
           </div>
           <div class="col-md-8 block-9 mb-md-5">
-          <table class="vitamins">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Car name</th>
-                <th>Pickup/Dropup</th>
-                <th>Journy Date/Time</th>
-                <th>Trip Loop</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-      
-        <tbody>
-            <?php
-       $user_id =$_SESSION['id'];
-            $query = "SELECT * FROM orders left join cars ON cars.id=orders.car_id  where user_id=$user_id";
-                              $result = $con->query($query);
-                              if ($result->num_rows > 0) {
-                                   foreach ($result as $key => $val) {
-                                    
-                     
-            ?>
-            <tr>
-                <td><?php echo $val['Oid']; ?></td>
-                <td><?php echo $val['name']; ?> <img style="height:50px; width:50px;" src="<?php echo $val['image']; ?>" alt=""></td>
-                <td><?php echo $val['pickup_location']."/".$val['dropup_location']; ?></td>
-                <td><?php echo $val['date']."/".$val['time']; ?></td>
-                <td>
-                <?php 
-                    if ($val['trip_loop']==0) {
-                        echo "Not back";
-                    }elseif ($val['trip_loop']==1) {
-                        echo "Return Home";
-                    }else{
-                        echo "something went wrong";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php 
-                    if ($val['status']==0) {
-                        echo "Pending";
-                    }elseif ($val['status']==1) {
-                        echo "running";
-                    }else{
-                        echo "Nice trip";
-                    }
-                    ?>
-                
-                </td>
-            </tr>
-      <?php }} ?>
-      
-          
-        </tbody>
-    </table>
+          <table class="table table-striped" id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Car model</th>
+                            <th>Service Charge</th>
+                            <th>Driver Charge</th>
+                            <th>From/To</th>
+                            <th>Return status</th>
+                            <th>Pick up Date Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <?php
+                        $user_id =$_SESSION['id'];
+
+                        if (isset($_GET['delid'])) {
+                            $delid = $_GET['delid'];
+                            $DELquery = "DELETE FROM orders WHERE Oid = $delid";
+                            $delete = $con->query($DELquery);
+                            if ($delete) {
+                                echo "<script>window.location='car-booking.php';</script>";
+                            }
+                        }
+
+                    
+
+                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id  where orders.user_id=$user_id Order By orders.status asc";
+                        $result = $con->query($query);
+                        if ($result->num_rows > 0) {
+                            foreach ($result as $key => $value) {
+
+                        ?>
+                                <tr>
+                                    <td><?php echo $value['id']; ?></td>
+                                    <td><?php echo $value['model']; ?></td>
+                                    <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
+                                    <td><?php echo $value['driver_food_charge']; ?> Per/Meal</td>
+                                    <td><?php echo $value['pickup_location']; ?>/<?php echo $value['dropup_location']; ?></td>
+                                    <td><?php echo $value['date']; ?>/<?php echo $value['time']; ?></td>
+                                    <td>
+                                        <?php
+                                        if ($value['trip_loop'] == 0) {
+                                            echo "Not back";
+                                        } elseif ($value['trip_loop'] == 1) {
+                                            echo "Return Home";
+                                        } else {
+                                            echo "something went wrong";
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if ($value['status'] == 0) {
+                                            echo "Pending"; ?>
+ <a href="?delid=<?php echo $value['Oid']; ?>" class="btn btn-info">Cancell</a>
+
+                                        <?php } elseif ($value['status'] == 1) {
+                                            echo "running";
+                                        } else {
+                                            echo "Nice trip"; ?>
+                                            <a href="car-single.php?carid=<?php echo $value['car_id']; ?>" class="btn btn-info">Ratting Us</a>
+
+                                       <?php }
+                                        ?>
+
+                                    </td>
+
+                                  
+                                </tr>
+                        <?php }
+                        } ?>
+
+
+                    </tbody>
+                </table>
           
           </div>
         </div>

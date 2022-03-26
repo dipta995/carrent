@@ -69,8 +69,8 @@ include 'db.php';
 			                $div            = explode('.', $file_name);
 			                $file_ext       = strtolower(end($div));
 			                $unique_image   = substr(md5(time()), 0, 10).'.'.$file_ext;
-			                $uploaded_image = "img/".$unique_image;
-			                $move_image = "img/".$unique_image;
+			                $uploaded_image = "image/".$unique_image;
+			                $move_image = "image/".$unique_image;
 			               
 			               if(empty($file_ext)){
 			                     echo $txt = "<span class='error-msg'>Image is required</span>";
