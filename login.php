@@ -208,7 +208,7 @@ include 'db.php';
 			</div>
 		</div>
 		<p class="text-center">
-			<small id="passwordHelpInline" class="text-muted"> Developer:<a href="http://www.psau.edu.ph/"> Pampanga state agricultural university ?</a> BS. Information and technology students @2017 Credits: <a href="https://v4-alpha.getbootstrap.com/">boostrap v4.</a></small>
+			<small id="passwordHelpInline" class="text-muted">Copyright @<?php echo date('Y'); ?></a></small>
 		</p>
 	</div>
 	</body>

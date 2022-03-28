@@ -1,22 +1,22 @@
 <?php include 'header.php';
  ?>
 		
-	 
+	 <style>
+         .table thead th { 
+    border-bottom: 2px solid #01d28e !important;
+    border-radius:10px !important;
+}
+     </style>
     <section class="ftco-section contact-section">
+        <h4  class="d-flex justify-content-center">My Order List</h4>
+        <hr>
       <div class="container">
         <div class="row d-flex mb-5 contact-info">
-        	<div class="col-md-4">
-        		<div class="row mb-5">
-					
-		          
-		          
-		        </div>
-          </div>
           <div class="col-md-8 block-9 mb-md-5">
           <table class="table table-striped" id="datatablesSimple">
                     <thead>
-                        <tr>
-                            <th>#</th>
+                        <tr style="border: 2px solid #01d28e ;">
+                            <th>ID No</th>
                             <th>Car model</th>
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
@@ -27,7 +27,7 @@
                         </tr>
                     </thead>
                     
-                    <tbody>
+                    <tbody style="margin-top: 10px;">
                         <?php
                         $user_id =$_SESSION['id'];
 
@@ -48,8 +48,8 @@
                             foreach ($result as $key => $value) {
 
                         ?>
-                                <tr>
-                                    <td><?php echo $value['id']; ?></td>
+                                <tr style="border: 2px solid #6197cd;">
+                                    <td style="padding-left: 10px;"><?php echo $value['id']; ?></td>
                                     <td><?php echo $value['model']; ?></td>
                                     <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
                                     <td><?php echo $value['driver_food_charge']; ?> Per/Meal</td>

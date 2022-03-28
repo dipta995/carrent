@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2022 at 03:23 PM
+-- Generation Time: Mar 28, 2022 at 07:12 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -66,7 +66,7 @@ INSERT INTO `cars` (`id`, `name`, `model`, `mileage`, `seats`, `fuel`, `service_
 (4, 'RANGE ROVER', ' EVOQUE', '30', 3, 'Desel', '5000', '500', '                 Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.\r\n\r\nWhen she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.', 'image/0e1617e230.jpg', 'Manual', '1', '0', 1, '3', '1', 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, '2021-12-28 13:28:49'),
 (5, 'RANGE ROVER s', ' EVOQUE', '22', 2, 'Octen', '2222', '22', '  22', 'image/dc6e22db79.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, '2021-12-28 15:57:58'),
 (6, 'RANGE ROVER s', ' EVOQUE', '22', 3, 'Octen', '2222', '22', '   22', 'image/c957b46029.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, '2021-12-28 15:58:09'),
-(7, 'RANGE ROVER s', ' EVOQUE', '22', 2, 'Octen', '2222', '22', ' 22', 'image/261548be03.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, '2021-12-28 15:58:29');
+(7, 'RANGE ROVER s', ' EVOQUE', '22', 2, 'Octen', '2222', '22', ' 22', 'image/261548be03.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, '2021-12-28 15:58:29');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `status`, `created_at`) VALUES
 (9, 5, 2, 'ju', 'loo', '2022-01-16', '11:53', 0, 2, '2022-01-14 15:54:53'),
-(10, 6, 3, 'ju', 'loo', '2022-03-24', '10:07', 0, 1, '2022-03-21 18:05:25');
+(10, 6, 3, 'ju', 'loo', '2022-03-24', '10:07', 0, 2, '2022-03-21 18:05:25'),
+(11, 7, 2, 'bonosree b block', 'rasahi', '2022-03-31', '14:33', 1, 0, '2022-03-28 16:33:51');
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,6 @@ CREATE TABLE `testimonials` (
 --
 
 INSERT INTO `testimonials` (`t_id`, `customer_id`, `comment`, `status`, `created_at`) VALUES
-(2, 2, 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.', 1, '2022-03-26 13:03:58'),
 (3, 3, 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.', 1, '2022-03-26 13:03:58');
 
 -- --------------------------------------------------------
@@ -187,7 +187,7 @@ ALTER TABLE `cars`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
