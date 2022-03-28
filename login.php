@@ -17,6 +17,9 @@
 			.container-fluid {padding:50px;}
 			.container{background-color:white;padding:50px;   }
 			#title{font-family: 'Lobster', cursive;;}
+		.error-msg{ color: red; font-size: 16px; font-weight: 700; }
+		.success-msg{ color: green; font-size: 16px; font-weight: 700; }
+		
 		</style>
 
 	<div class="container-fluid">
@@ -53,7 +56,7 @@ include 'db.php';
 			                echo $txt =  "<span class='error-msg'>Phone Only 11 Digit</span>";  
 			                         
 			            }elseif ( strlen ($national_id) != 13) {  
-			                echo $txt =  "<span class='error-msg'>National Id no will Digit</span>";  
+			                echo $txt =  "<span class='error-msg'>National Id will 13 Digit only</span>";  
 			                         
 			            }elseif (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
 			  	 			echo $txt =  "<span class='error-msg'>Only letters and white space allowed</span>";
