@@ -35,7 +35,7 @@
 
                         if (isset($_GET['delid'])) {
                             $delid = $_GET['delid'];
-                            $DELquery = "DELETE FROM testimonials WHERE t_idid = $delid";
+                            $DELquery = "DELETE FROM testimonials WHERE t_id = $delid";
                             $delete = $con->query($DELquery);
                             if ($delete) {
                                 echo "<script>window.location='testimonial.php';</script>";

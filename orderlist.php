@@ -21,8 +21,8 @@
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
                             <th>From/To</th>
-                            <th>Return status</th>
                             <th>Pick up Date Time</th>
+                            <th>Return status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -75,7 +75,7 @@
                                         <?php } elseif ($value['status'] == 1) {
                                             echo "running";
                                         } else {
-                                            echo "Nice trip"; ?>
+                                            echo "Finished"; ?>
                                             <a href="car-single.php?carid=<?php echo $value['car_id']; ?>" class="btn btn-info">Ratting Us</a>
 
                                        <?php }

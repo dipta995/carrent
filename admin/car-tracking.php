@@ -19,8 +19,8 @@
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
                             <th>From/To</th>
-                            <th>Return status</th>
                             <th>Pick up Date Time</th>
+                            <th>Return status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -33,8 +33,8 @@
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
                             <th>From/To</th>
-                            <th>Return status</th>
                             <th>Pick up Date Time</th>
+                            <th>Return status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -103,7 +103,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info">Confirm</a>
+                                        <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info">Finish</a>
                                        
                    
                                     </td>
