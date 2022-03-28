@@ -208,7 +208,7 @@ include 'db.php';
 			</div>
 		</div>
 		<p class="text-center">
-			<small id="passwordHelpInline" class="text-muted">Copyright @<?php echo date('Y'); ?></a></small>
+			<small id="passwordHelpInline" class="text-muted">Copyright @<?php echo date('Y'); ?></a> All Right Resurved</small>
 		</p>
 	</div>
 	</body>
