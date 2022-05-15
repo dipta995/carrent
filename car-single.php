@@ -170,67 +170,39 @@
 						    <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
 						      <div class="row">
 							   		<div class="col-md-7">
-							   			<h3 class="head">23 Reviews</h3>
+							   			<h3 class="head"><?php 
+										   $query = "SELECT * FROM reviews left join users on users.id = reviews.user_id where  car_id = $carid";
+										   $result = $con->query($query);
+										   echo $result->num_rows; ?> Reviews</h3>
+										   <?php
+										 	  
+											   if ($result->num_rows > 0) {
+												   foreach ($result as $key => $review) {
+													  
+										   ?>
 							   			<div class="review d-flex">
 									   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
 									   		<div class="desc">
 									   			<h4>
-									   				<span class="text-left">Jacob Webb</span>
-									   				<span class="text-right">14 March 2018</span>
+									   				<span class="text-left"><?php echo $review['name'] ?></span>
+									   				<span class="text-right"><?php echo $review['comment_at'] ?></span>
 									   			</h4>
 									   			<p class="star">
 									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
+									   					
+													   <?php
+													     $rat = $review['rat'];
+														 for ($i=0; $i < $rat ; $i++) { 
+															 echo '<i class="ion-ios-star"></i>';														 }
+														 ?>
 								   					</span>
 								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
 									   			</p>
-									   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
+									   			<p><?php echo $review['comment_at'] ?></p>
 									   		</div>
 									   	</div>
-									   	<div class="review d-flex">
-									   		<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-									   		<div class="desc">
-									   			<h4>
-									   				<span class="text-left">Jacob Webb</span>
-									   				<span class="text-right">14 March 2018</span>
-									   			</h4>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-								   					</span>
-								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-									   			</p>
-									   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-									   		</div>
-									   	</div>
-									   	<div class="review d-flex">
-									   		<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-									   		<div class="desc">
-									   			<h4>
-									   				<span class="text-left">Jacob Webb</span>
-									   				<span class="text-right">14 March 2018</span>
-									   			</h4>
-									   			<p class="star">
-									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-								   					</span>
-								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-									   			</p>
-									   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-									   		</div>
-									   	</div>
+										   <?php }} ?>
+								
 							   		</div>
 							   		<div class="col-md-5">
 							   			<div class="rating-wrap">
@@ -238,52 +210,108 @@
 								   			<div class="wrap">
 									   			<p class="star">
 									   				<span>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					<i class="ion-ios-star"></i>
-									   					(98%)
+													   <?php
+													$query = "SELECT * FROM reviews where  car_id = $carid";
+													$result = $con->query($query);
+													if ($result->num_rows > 0) {
+														$rat = 0;
+														foreach ($result as $key => $rats) {
+															$rat += $rats['rat'];
+															
+														}
+													
+                                                    $a = ceil($rat / $result->num_rows); 
+                                                    if ($a == 0) {
+                                                        echo "No ratting";
+                                                    } elseif ($a == 1) {
+                                                        echo "<i class='ion-ios-star'></i>";
+                                                    } elseif ($a == 2) {
+                                                        echo "<i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>";
+                                                    } elseif ($a == 3) {
+                                                        echo "<i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>";
+                                                    } elseif ($a == 4) {
+                                                        echo "<i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>";
+                                                    } elseif ($a == 5) {
+                                                        echo "<i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>
+                                        <i class='ion-ios-star'></i>";
+                                                    } else {
+                                                    }
+                                                }else{
+													echo "no ratting";
+												}
+                                                ?>
+									   					
 								   					</span>
-								   					<span>20 Reviews</span>
+								   					<span><?php echo $result->num_rows; ?> Reviews</span>
 									   			</p>
-									   		 
-									   		 
+					<?php 
+					                        $user_id =$_SESSION['id'];
+						 $query = "SELECT * FROM reviews where user_id=$user_id and car_id = $carid";
+						 $result = $con->query($query);
+						 if ($result->num_rows > 0) { } else{
+							if(isset($_POST['submit'])){
+								$rat =$_POST['rat'];
+								$comment = $_POST['comment'];
+
+							$sql = "INSERT INTO reviews (user_id,car_id,rat,comment,comment_at)VALUES ('$user_id','$carid','$rat','$comment',date('m/d/Y'))";
+							
+							if ($con->query($sql) === TRUE) { 
+							}
+							}
+							   
+					?>				   		 
+<form action="" method="post">								   		 
 <p class="star">
-	<form class="rating">
+	<div class="rating">
   <label>
-    <input type="radio" name="stars" value="1" />
+    <input name="rat" type="radio" value="1" />
     <span class="icon">★</span>
   </label>
   <label>
-    <input type="radio" name="stars" value="2" />
+    <input name="rat" type="radio" value="2" />
     <span class="icon">★</span>
     <span class="icon">★</span>
   </label>
   <label>
-    <input type="radio" name="stars" value="3" />
+    <input name="rat" type="radio" value="3" />
     <span class="icon">★</span>
     <span class="icon">★</span>
     <span class="icon">★</span>   
   </label>
   <label>
-    <input type="radio" name="stars" value="4" />
+    <input name="rat" type="radio" value="4" />
     <span class="icon">★</span>
     <span class="icon">★</span>
     <span class="icon">★</span>
     <span class="icon">★</span>
   </label>
   <label>
-    <input type="radio" name="stars" value="5" />
+    <input name="rat" type="radio" value="5" />
     <span class="icon">★</span>
     <span class="icon">★</span>
     <span class="icon">★</span>
     <span class="icon">★</span>
     <span class="icon">★</span>
   </label>
+ 
 
-</form>
+
+							</div>
+							<br>
+  <textarea name="comment" id="" cols="10" rows="2"></textarea>
+  <input type="submit" name="submit" class="btn btn-info">
 									   			</p>
+												   </form>	
+												   <?php } ?>
 									   		</div>
 								   		</div>
 							   		</div>

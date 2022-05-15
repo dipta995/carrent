@@ -1,5 +1,9 @@
   <?php include 'header.php';
-
+if (isset($_SESSION['id'] )) {
+  
+}else{
+  header('Location:login.php');
+}
         if (empty($_GET['carid']) || $_GET['carid']==NULL|| !isset($_GET['carid'])) {
                       echo "<script>window.location='car.php';</script>";
                   }

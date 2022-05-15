@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2022 at 07:12 PM
+-- Generation Time: May 15, 2022 at 07:36 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -71,6 +71,25 @@ INSERT INTO `cars` (`id`, `name`, `model`, `mileage`, `seats`, `fuel`, `service_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `office_info`
+--
+
+CREATE TABLE `office_info` (
+  `address` text NOT NULL,
+  `phone` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `office_info`
+--
+
+INSERT INTO `office_info` (`address`, `phone`, `email`) VALUES
+('198 West 21th Street, Suite 721 New York NY 10010', '+ 1235 2355 98', 'info@yoursite.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -95,6 +114,30 @@ INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `pickup_location`, `dropup_loc
 (9, 5, 2, 'ju', 'loo', '2022-01-16', '11:53', 0, 2, '2022-01-14 15:54:53'),
 (10, 6, 3, 'ju', 'loo', '2022-03-24', '10:07', 0, 2, '2022-03-21 18:05:25'),
 (11, 7, 2, 'bonosree b block', 'rasahi', '2022-03-31', '14:33', 1, 0, '2022-03-28 16:33:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `car_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `rat` int(11) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `replay` text DEFAULT NULL,
+  `comment_at` varchar(191) DEFAULT NULL,
+  `replay_at` varchar(191) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `car_id`, `user_id`, `rat`, `comment`, `replay`, `comment_at`, `replay_at`) VALUES
+(2, 5, 2, 3, 'mmmm', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,6 +175,8 @@ CREATE TABLE `users` (
   `password` varchar(150) NOT NULL,
   `national_id` int(11) NOT NULL,
   `image` varchar(155) NOT NULL,
+  `otp` int(11) DEFAULT NULL,
+  `auth_check` int(11) NOT NULL DEFAULT 0,
   `flag` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -140,9 +185,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `password`, `national_id`, `image`, `flag`, `created_at`) VALUES
-(2, 'Dipta Dey', 'dipta995@gmail.com', '01632315608', 'dhaka', '12345678', 2147483647, 'image/c957b46029.jpg', 1, '2021-12-18 15:18:23'),
-(3, 'da', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 2147483647, 'image/5951fdd4d9.jpg', 0, '2022-01-10 13:51:27');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `password`, `national_id`, `image`, `otp`, `auth_check`, `flag`, `created_at`) VALUES
+(2, 'Dipta Dey', 'dipta95@gmail.com', '01632315608', 'dhaka', '12345678', 2147483647, 'image/c957b46029.jpg', NULL, 1, 1, '2021-12-18 15:18:23'),
+(3, 'da', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 2147483647, 'image/5951fdd4d9.jpg', NULL, 0, 0, '2022-01-10 13:51:27'),
+(5, 'JUSTIN', 'dipta995@gmail.com', '01632315608', 'fdsssdf', '12345678', 2147483647, 'image/45e46c917a.jpg', 1652590218, 1, 0, '2022-05-15 04:50:18');
 
 --
 -- Indexes for dumped tables
@@ -159,6 +205,12 @@ ALTER TABLE `cars`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`Oid`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `testimonials`
@@ -190,6 +242,12 @@ ALTER TABLE `orders`
   MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
@@ -199,7 +257,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

@@ -1,4 +1,9 @@
 <?php include 'header.php';
+if (isset($_SESSION['id'] )) {
+  
+}else{
+  header('Location:login.php');
+}
  ?>
 		
 	 <style>
@@ -46,7 +51,7 @@
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
-
+ 
                         ?>
                                 <tr style="border: 2px solid #6197cd;">
                                     <td style="padding-left: 10px;"><?php echo $value['id']; ?></td>

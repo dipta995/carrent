@@ -33,17 +33,17 @@
  					<!-- PHP BLOCK -->
 		<?php
 include 'db.php';
- if (isset($_SESSION['active'])=="active") {
-	 
-	echo "<script>window.location='index.php';</script>";
-	}
+if (isset($_SESSION['active'])=="active") {
+echo "<script>window.location='index.php';</script>";
+}
 			  if(isset($_POST['create'])){
                         $name = $_POST['name'];
                         $email = $_POST['email'];
                         $phone = $_POST['phone'];
                         $password = $_POST['password'];
                         $address = mysqli_real_escape_string($con,$_POST['address']);;
-                        $national_id = $_POST['national_id'];                      
+                        $national_id = $_POST['national_id'];     
+						$time = time();                 
                             
                         if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($national_id)) {
                             echo $txt = "<span class='error-msg'>Field Must Not be Empty</span>"; 
@@ -61,7 +61,6 @@ include 'db.php';
 			            }elseif (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
 			  	 			echo $txt =  "<span class='error-msg'>Only letters and white space allowed</span>";
 						}
-
 			            else{
      
 			                $permited  = array('jpg', 'jpeg', 'png', 'gif');
@@ -85,20 +84,63 @@ include 'db.php';
 			                echo $txt = "<span class='error-msg'>You can upload only:-".implode(', ', $permited)."</span>";
 			               }
 			               else{
-			                    move_uploaded_file($file_temp, $move_image);
+			                    // move_uploaded_file($file_temp, $move_image);
+
+								$query = "SELECT * FROM users WHERE email='$email'";
+								$result = $con->query($query);
+								if ($result->num_rows > 0) {
+									echo $txt = "<span class='error-msg'>Email Already in use</span>";
+
+								  }else{
+
 			               
-			                    $sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image) values('$name','$email','$phone','$address','$password','$national_id','0','$uploaded_image')";
+			                    $sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image,otp) values('$name','$email','$phone','$address','$password','$national_id','0','$uploaded_image','$time')";
 			                    if ($con->query($sql) === TRUE) {
                        
                             move_uploaded_file($tempnameone,$folder1);
-                            echo "<script>window.location='index.php';</script>";
+
+							require("mail/src/PHPMailer.php");
+							require("mail/src/SMTP.php");
+							require("mail/src/Exception.php");
+							require("mail/constants.php");
+							$mail = new PHPMailer\PHPMailer\PHPMailer();
+							try {      
+								  $mail->IsSMTP(); 
+								 //$mail->SMTPDebug = 1; 
+								  $mail->SMTPAuth = true;
+								  $mail->SMTPSecure = 'ssl'; 
+								  $mail->Host = "smtp.gmail.com";
+								  $mail->Port = 465; 
+								  $mail->IsHTML(true);
+								  $mail->Username = "jannatul071997@gmail.com";
+								  $mail->Password ='jannat1234';
+								  $mail->SetFrom("jannatul071997@gmail.com");
+							 
+								   $mail->isHTML(true); 
+								   $mail->Subject = "Confirmation";
+								   $mail->Body = "<h4>http://localhost/carrent/confirmmail.php?otp=".$time."</p>"; 
+								   $mail->AddAddress("jannatul071997@gmail.com");
+								  if($mail->Send()){
+									//echo $agentemail;
+									echo "<span class='success-msg'>New record created successfully.Check Email:<a href='#'>".$email."</a></span>";
+								  }else{
+						   
+								  }
+								  
+							  } catch (Exception $e) {
+								   
+							  }
+							
+
+                            echo "<script>window.location='login.php';</script>";
 		                            
-		                    echo $txt = "<span class='success-msg'>New record created successfully</span>";
+		                    echo $txt = "<span class='success-msg'>Check email and confirm</span>";
 		                    } else {
 		                        echo $txt = "Error: " . $sql . "<br>" . $con->error__;
 		                    }
 					                          
 					                } 
+								}
 					            }
 
 
@@ -107,7 +149,7 @@ include 'db.php';
 		if (isset($_POST['login'])) {
 			$email = $_POST['email'];
 			$password = $_POST['password'];
-			$query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+			$query = "SELECT * FROM users WHERE email='$email' AND password='$password' ANd auth_check !=0";
 			
 			$result = $con->query($query);
 	
