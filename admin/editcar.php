@@ -3,7 +3,7 @@
 <div class="container-fluid px-4">
     <h1 class="mt-4">Create new car <a class="btn btn-info" href="cars.php">Cars</a></h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
         <li class="breadcrumb-item active">Cars</li>
     </ol>
     <div class="card mb-4">

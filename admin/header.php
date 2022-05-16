@@ -35,7 +35,7 @@ echo "<script>window.location='../login.php';</script>";
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Menu </a>
+            <a class="navbar-brand ps-3" href="index.php">Menu </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -101,15 +101,11 @@ echo "<script>window.location='../login.php';</script>";
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Address
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <?= $_SESSION['name']; ?>
                     </div>
                 </nav>
             </div>

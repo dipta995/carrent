@@ -125,7 +125,7 @@ echo $datetime->format('Y-m-d'); ?>" class="form-control" placeholder="Dropup Lo
                 <div class="img rounded d-flex align-items-end" style="background-image: url(<?php echo $val['image']; ?>);">
                 </div>
                 <div class="text">
-                  <h2 class="mb-0"><a href="car-single.html"><?php echo $val['name']; ?></a></h2>
+                  <h2 class="mb-0"><a href="order.php?carid=<?php echo $val['id']; ?>"><?php echo $val['name']; ?></a></h2>
                   <div class="d-flex mb-3">
                     <span class="cat"><?php echo $val['model']; ?></span>
                     <p class="price ml-auto"><?php echo $val['service_charge']; ?> <span>Taka/hour</span></p>
