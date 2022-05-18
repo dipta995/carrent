@@ -53,12 +53,23 @@
 
                         if (isset($_GET['confirmid'])) {
                             $confirmid = $_GET['confirmid'];
+                            $query = "SELECT * FROM orders WHERE Oid=$confirmid";
+                            $result = $con->query($query); 
+                                $value = mysqli_fetch_array($result);
+                                $carid = $value['car_id'];
                             $editquery = "UPDATE orders  
                             SET
                             status       = '2'
                          WHERE Oid = $confirmid";
                             $edit = $con->query($editquery);
                             if ($edit) {
+                                $editquery = "UPDATE cars  
+                                SET
+                                flag       = '0'
+                             WHERE id = $carid";
+                                $edit = $con->query($editquery);
+                                    // echo "<script>window.location='car-tracking.php';</script>";
+                                
                                 echo "<script>window.location='last-rent.php';</script>";
                             }
                         }

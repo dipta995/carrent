@@ -30,6 +30,7 @@
                 }
                   
                     if(isset($_POST['submit'])){
+                        $cat_id =$_POST['cat_id'];
                         $name =$_POST['name'];
                         $model = $_POST['model'];
                         $mileage = $_POST['mileage'];
@@ -73,6 +74,7 @@
                             
                              $sql = "UPDATE cars  
                                     SET
+                                    cat_id       = '$cat_id',
                                     name       = '$name',
                                     model      = '$model',
                                     mileage       = '$mileage',
@@ -119,6 +121,7 @@
                              
                              $sql = "UPDATE cars  
                                     SET
+                                    cat_id       = '$cat_id',
                                     name       = '$name',
                                     model      = '$model',
                                     mileage       = '$mileage',
@@ -163,6 +166,26 @@
 
                     ?>
                     <div class="row mb-3">
+                    <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <select name="cat_id" required class="form-control">
+                                    <?php
+                                     $query1 = "SELECT * FROM categories";
+                                     $result1 = $con->query($query1);
+                                     if ($result1->num_rows > 0) {
+                                         foreach ($result1 as $key => $values) {
+                                    ?>
+                                    <option value="<?php echo $values['category_id'] ?>" <?php echo ($value['cat_id']==$values['category_id']) ? "selected" : ""; ?> >
+                                    <?php echo $values['cat_name'] ?>
+                                </option>
+                                    <?php
+                                         } }
+                                    ?>
+                                </select>
+
+                                <label for="inputFirstName">Category Name</label>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
                                 <input name="name"  class="form-control" id="inputFirstName" type="text" value="<?php echo $value['name']; ?>" />

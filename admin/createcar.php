@@ -18,6 +18,7 @@
     // }
                   
                     if(isset($_POST['submit'])){
+                        $cat_id =$_POST['cat_id'];
                         $name =$_POST['name'];
                         $model = $_POST['model'];
                       
@@ -71,8 +72,8 @@
                              $remote_central_locking = (empty($_POST['remote_central_locking'])) ? "0" : "1";
                              $climate_control = (empty($_POST['climate_control'])) ? "0" : "1";
                              
-                            $sql = "INSERT INTO cars (name,model,mileage,seats,fuel,service_charge,driver_food_charge,description,image,airconditions,child_seat,gps,luggage,music,seat_belt,sleeping_bed,water,bluetooth,onboard_computer,audio_input,long_term_trips,car_kit,remote_central_locking,climate_control,flag)
-                    VALUES ('$name','$model','$mileage','$seats','$fuel','$service_charge','$driver_food_charge','$description','$uploaded_image','$airconditions','$child_seat','$gps','$luggage','$music','$seat_belt','$sleeping_bed','$water','$bluetooth','$onboard_computer','$audio_input','$long_term_trips','$car_kit','$remote_central_locking','$climate_control','$flag')";
+                            $sql = "INSERT INTO cars (cat_id,name,model,mileage,seats,fuel,service_charge,driver_food_charge,description,image,airconditions,child_seat,gps,luggage,music,seat_belt,sleeping_bed,water,bluetooth,onboard_computer,audio_input,long_term_trips,car_kit,remote_central_locking,climate_control,flag)
+                    VALUES ('$cat_id','$name','$model','$mileage','$seats','$fuel','$service_charge','$driver_food_charge','$description','$uploaded_image','$airconditions','$child_seat','$gps','$luggage','$music','$seat_belt','$sleeping_bed','$water','$bluetooth','$onboard_computer','$audio_input','$long_term_trips','$car_kit','$remote_central_locking','$climate_control','$flag')";
 
                     if ($con->query($sql) === TRUE) {
                        
@@ -89,6 +90,25 @@
 
                     ?>
                     <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                <select name="cat_id" required class="form-control">
+                                    <?php
+                                     $query = "SELECT * FROM categories";
+                                     $result = $con->query($query);
+                                     if ($result->num_rows > 0) {
+                                         foreach ($result as $key => $value) {
+                                             
+                                    ?>
+                                    <option value="<?php echo $value['category_id'] ?>"><?php echo $value['cat_name'] ?></option>
+                                    <?php
+                                         } }
+                                    ?>
+                                </select>
+
+                                <label for="inputFirstName">Category Name</label>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
                                 <input name="name" required class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />

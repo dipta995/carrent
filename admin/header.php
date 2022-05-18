@@ -69,6 +69,10 @@ echo "<script>window.location='../login.php';</script>";
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link" href="categories.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                              Category
+                            </a>
                             <a class="nav-link" href="cars.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                               Cars
