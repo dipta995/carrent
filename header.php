@@ -47,7 +47,19 @@
 	          <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
 	          <!-- <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li> -->
 	          <li class="nav-item"><a href="orderlist.php" class="nav-link">Order List</a></li>
-	          <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="car.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cars</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <?php
+                        $query = "SELECT * FROM categories";
+                        $categories = $con->query($query);
+                        foreach ($categories as $key => $value) {
+                      ?>
+                        <li><a class="dropdown-item" href="car.php?<?php echo $value['category_id']?>"><?php echo $value['cat_name']?></a></li>
+              <?php } ?>
+                    </ul>
+                </li>
+	          <!-- <li class="nav-item"><a href="car.php" class="nav-link">Cars</a></li> -->
             <?php
             session_start();
 if (isset($_GET['logout'])) {

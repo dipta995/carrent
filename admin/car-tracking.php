@@ -21,6 +21,7 @@
                             <th>From/To</th>
                             <th>Pick up Date Time</th>
                             <th>Return status</th>
+                            <th>Driver</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                             <th>From/To</th>
                             <th>Pick up Date Time</th>
                             <th>Return status</th>
+                            <th>Driver</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -57,6 +59,7 @@
                             $result = $con->query($query); 
                                 $value = mysqli_fetch_array($result);
                                 $carid = $value['car_id'];
+                                $driver_id = $value['driver_id'];
                             $editquery = "UPDATE orders  
                             SET
                             status       = '2'
@@ -68,13 +71,18 @@
                                 flag       = '0'
                              WHERE id = $carid";
                                 $edit = $con->query($editquery);
+                                $editquery = "UPDATE drivers  
+                                SET
+                                is_active       = 0
+                             WHERE driver_id = $driver_id";
+                                $edit = $con->query($editquery);
                                     // echo "<script>window.location='car-tracking.php';</script>";
                                 
                                 echo "<script>window.location='last-rent.php';</script>";
                             }
                         }
 
-                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN users ON users.id = orders.user_id where orders.status=1 Order By orders.Oid asc";
+                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN drivers ON orders.driver_id = drivers.driver_id LEFT JOIN users ON users.id = orders.user_id where orders.status=1 Order By orders.Oid asc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
@@ -111,6 +119,9 @@
                                         }
                                         ?>
 
+                                    </td>
+                                    <td>
+                                    <?php echo $value['driver_name']."<br>".$value['driver_phone']; ?>
                                     </td>
 
                                     <td>

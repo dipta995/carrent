@@ -21,6 +21,7 @@
                             <th>From/To</th>
                             <th>Return status</th>
                             <th>Pick up Date Time</th>
+                            <th>status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                             <th>From/To</th>
                             <th>Return status</th>
                             <th>Pick up Date Time</th>
+                            <th>status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -51,23 +53,7 @@
                             }
                         }
 
-                        if (isset($_GET['editid'])) {
-                            $editid = $_GET['editid'];
-                            $carid = $_GET['carid'];
-                            $editquery = "UPDATE orders  
-                            SET
-                            status       = 1
-                         WHERE Oid = $editid";
-                            $edit = $con->query($editquery);
-                            if ($edit) {
-                                $editquery = "UPDATE cars  
-                            SET
-                            flag       = '1'
-                         WHERE id = $carid";
-                            $edit = $con->query($editquery);
-                                echo "<script>window.location='car-tracking.php';</script>";
-                            }
-                        }
+                     
 
                         $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN users ON users.id = orders.user_id where orders.status=0 Order By orders.Oid asc";
                         $result = $con->query($query); 
@@ -110,7 +96,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="?editid=<?php echo $value['Oid']; ?>&carid=<?php echo $value['car_id']; ?>" class="btn btn-info">Confirm</a>
+                                        <a href="order-confirm.php?editid=<?php echo $value['Oid']; ?>&carid=<?php echo $value['car_id']; ?>" class="btn btn-info">Confirm</a>
                                         <a href="?delid=<?php echo $value['Oid']; ?>" class="btn btn-danger">Cancell</a>
                    
                                     </td>

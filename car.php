@@ -27,14 +27,28 @@ include 'header.php';
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
             die();
         }
-
+        if (isset($_GET['catid'])) {
+          $catid = $_GET['catid'];
+          $total_pages_sql = "SELECT COUNT(*) FROM cars where  cat_id = $catid and flag=0 ";
+      } else {
         $total_pages_sql = "SELECT COUNT(*) FROM cars where flag=0 ";
+         
+      }
+
         $result = mysqli_query($con,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
 
         $total_pages = ceil($total_rows / $no_of_records_per_page);
-
+        if (isset($_GET['catid'])) {
+          $catid = $_GET['catid'];
+          
+          $sqls = "SELECT * FROM cars where cat_id = $catid and flag=0 LIMIT $offset, $no_of_records_per_page";
+        } else {
         $sqls = "SELECT * FROM cars where flag=0 LIMIT $offset, $no_of_records_per_page";
+        
+         
+      }
+
         $res_data = mysqli_query($con,$sqls);
       if ($res_data->num_rows > 0) {
           foreach ($res_data as $key => $value) {
@@ -58,24 +72,38 @@ include 'header.php';
     		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
-          
-              <ul>
-                
-
-        <li><a href="?pageno=1">&lt;</a></li>
-        <li class="">
           <?php
-          for ($i=1; $i <= $total_pages ; $i++) { ?>
-            <li><a href="?pageno=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-         <?php  }
-          ?>
-
-
-            <a href=""></a>
-        </li>
+           if (isset($_GET['catid'])) {
+            $catid = $_GET['catid']; ?>
         
-        <li><a href="?pageno=<?php echo $total_pages; ?>">&gt;</a></li>
-    </ul>
+        <ul>
+                  <li><a href="?catid=<?php echo $catid;?>&pageno=1">&lt;</a></li>
+                  <li class="">
+                    <?php
+                    for ($i=1; $i <= $total_pages ; $i++) { ?>
+                      <li><a href="?catid=<?php echo $catid;?>&pageno=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                  <?php  }
+                    ?>
+                      <a href=""></a>
+                  </li>
+                  <li><a href="?catid=<?php echo $catid;?>&pageno=<?php echo $total_pages;?>">&gt;</a></li>
+              </ul>
+        <?php } else { ?>
+         
+          <ul>
+                  <li><a href="?pageno=1">&lt;</a></li>
+                  <li class="">
+                    <?php
+                    for ($i=1; $i <= $total_pages ; $i++) { ?>
+                      <li><a href="?pageno=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                  <?php  }
+                    ?>
+                      <a href=""></a>
+                  </li>
+                  <li><a href="?pageno=<?php echo $total_pages; ?>">&gt;</a></li>
+              </ul>
+         <?php }  ?>
+
 
 
 

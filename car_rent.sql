@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2022 at 08:06 PM
+-- Generation Time: May 22, 2022 at 07:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -92,6 +92,30 @@ INSERT INTO `categories` (`category_id`, `cat_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `drivers`
+--
+
+CREATE TABLE `drivers` (
+  `driver_id` int(11) NOT NULL,
+  `driver_name` varchar(191) NOT NULL,
+  `driver_phone` varchar(191) NOT NULL,
+  `driver_license` varbinary(255) NOT NULL,
+  `driver_address` text NOT NULL,
+  `is_active` tinyint(4) NOT NULL DEFAULT 0,
+  `join_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `flag` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `drivers`
+--
+
+INSERT INTO `drivers` (`driver_id`, `driver_name`, `driver_phone`, `driver_license`, `driver_address`, `is_active`, `join_at`, `flag`) VALUES
+(1, 'mr. Ajgor', '12345678987', 0x3132333435, 'dsfsdv', 0, '2022-05-22 15:29:56', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `office_info`
 --
 
@@ -118,6 +142,7 @@ CREATE TABLE `orders` (
   `Oid` int(11) NOT NULL,
   `car_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `driver_id` int(11) NOT NULL,
   `pickup_location` text NOT NULL,
   `dropup_location` text NOT NULL,
   `date` varchar(191) NOT NULL,
@@ -131,10 +156,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `status`, `created_at`) VALUES
-(9, 5, 2, 'ju', 'loo', '2022-01-16', '11:53', 0, 2, '2022-01-14 15:54:53'),
-(10, 6, 3, 'ju', 'loo', '2022-03-24', '10:07', 0, 1, '2022-03-21 18:05:25'),
-(11, 7, 2, 'bonosree b block', 'rasahi', '2022-03-31', '14:33', 1, 2, '2022-03-28 16:33:51');
+INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `driver_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `status`, `created_at`) VALUES
+(9, 5, 2, 0, 'ju', 'loo', '2022-01-16', '11:53', 0, 2, '2022-01-14 15:54:53'),
+(10, 6, 3, 0, 'ju', 'loo', '2022-03-24', '10:07', 0, 2, '2022-03-21 18:05:25'),
+(11, 7, 2, 0, 'bonosree b block', 'rasahi', '2022-03-31', '14:33', 1, 2, '2022-03-28 16:33:51'),
+(12, 5, 5, 1, 'ju', 'loo', '2022-05-23', '09:03', 0, 2, '2022-05-22 16:00:25');
 
 -- --------------------------------------------------------
 
@@ -228,6 +254,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `drivers`
+--
+ALTER TABLE `drivers`
+  ADD PRIMARY KEY (`driver_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -269,10 +301,16 @@ ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `drivers`
+--
+ALTER TABLE `drivers`
+  MODIFY `driver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `reviews`

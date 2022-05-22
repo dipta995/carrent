@@ -27,6 +27,7 @@ if (isset($_SESSION['id'] )) {
                             <th>Driver Charge</th>
                             <th>From/To</th>
                             <th>Pick up Date Time</th>
+                            <th>Driver</th>
                             <th>Return status</th>
                             <th>Action</th>
                         </tr>
@@ -47,7 +48,7 @@ if (isset($_SESSION['id'] )) {
 
                     
 
-                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id  where orders.user_id=$user_id Order By orders.status asc";
+                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN drivers ON orders.driver_id = drivers.driver_id where orders.user_id=$user_id Order By orders.status asc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
@@ -60,6 +61,9 @@ if (isset($_SESSION['id'] )) {
                                     <td><?php echo $value['driver_food_charge']; ?> Per/Meal</td>
                                     <td><?php echo $value['pickup_location']; ?>/<?php echo $value['dropup_location']; ?></td>
                                     <td><?php echo $value['date']; ?>/<?php echo $value['time']; ?></td>
+                                    <td>
+                                    <?php echo $value['driver_name']."<br>".$value['driver_phone']; ?>
+                                    </td>
                                     <td>
                                         <?php
                                         if ($value['trip_loop'] == 0) {
