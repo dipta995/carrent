@@ -119,7 +119,7 @@ echo "<script>window.location='index.php';</script>";
 								   $mail->isHTML(true); 
 								   $mail->Subject = "Confirmation";
 								   $mail->Body = "<h4>http://localhost/carrent/confirmmail.php?otp=".$time."</p>"; 
-								   $mail->AddAddress("jannatul071997@gmail.com");
+								   $mail->AddAddress($emai);
 								  if($mail->Send()){
 									//echo $agentemail;
 									echo "<span class='success-msg'>New record created successfully.Check Email:<a href='#'>".$email."</a></span>";
