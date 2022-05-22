@@ -55,7 +55,7 @@
                         $categories = $con->query($query);
                         foreach ($categories as $key => $value) {
                       ?>
-                        <li><a class="dropdown-item" href="car.php?<?php echo $value['category_id']?>"><?php echo $value['cat_name']?></a></li>
+                        <li><a class="dropdown-item" href="car.php?catid=<?php echo $value['category_id']?>"><?php echo $value['cat_name']?></a></li>
               <?php } ?>
                     </ul>
                 </li>
