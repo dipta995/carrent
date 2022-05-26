@@ -18,7 +18,7 @@ if (isset($_SESSION['id'] )) {
                       $orderque = "SELECT * FROM orders WHERE car_id='$carid' AND user_id='$user_id' AND status=0";
                       $orderresult = $con->query($orderque);
                       
-                      $orderque1 = "SELECT * FROM orders WHERE car_id='$carid' AND status=0 OR status=1";
+                      $orderque1 = "SELECT * FROM orders WHERE car_id='$carid' AND status IN(0, 1)";
                       $orderresult1 = $con->query($orderque1);
                       
                   }
