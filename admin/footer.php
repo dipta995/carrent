@@ -16,4 +16,14 @@
            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
+    <style>
+        .success-msg{
+            color: green;
+            font-size: 16px;
+        }
+        .error-msg{
+            color: red;
+            font-size: 16px;
+        }
+    </style>
 </html>

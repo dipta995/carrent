@@ -92,7 +92,13 @@ echo $datetime->format('Y-m-d'); ?>" class="form-control" placeholder="Dropup Lo
                   <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
                 </div> -->
                 <div class="form-group">
-                  <input type="submit" name="confirmorder" value="Send Message" class="btn btn-primary py-3 px-5">
+                  <?php
+                    if ($_SESSION['flag']==0) {
+           
+                  ?>
+                  <input type="submit" name="confirmorder" value="Confirm" class="btn btn-primary py-3 px-5">
+               
+                  <?php } ?>
                 </div>
               </form>
             
