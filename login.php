@@ -118,7 +118,7 @@ echo "<script>window.location='index.php';</script>";
 							 
 								   $mail->isHTML(true); 
 								   $mail->Subject = "Confirmation";
-								   $mail->Body = "<h4>http://localhost/carrent/confirmmail.php?otp=".$time."</p>"; 
+								   $mail->Body = "<h4>http://localhost/car/confirmmail.php?otp=".$time."</p>"; 
 								   $mail->AddAddress($email);
 								  if($mail->Send()){
 									//echo $agentemail;
