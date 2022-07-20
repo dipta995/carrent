@@ -59,7 +59,7 @@ echo "<script>window.location='index.php';</script>";
 			                echo $txt =  "<span class='error-msg'>National Id will 13 Digit only</span>";  
 			                         
 			            }elseif (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-			  	 			echo $txt =  "<span class='error-msg'>Only letters and white space allowed</span>";
+			  	 			echo $txt =  "<span class='error-msg'>Only letters and white space allowed in name</span>";
 						}
 			            else{
      
@@ -185,7 +185,7 @@ echo "<script>window.location='index.php';</script>";
  					<form method="post" enctype="multipart/form-data">
 						<fieldset>				
 								
-							<p class="text-uppercase pull-center"> SIGN UP.</p>	
+							<p class="text-uppercase pull-center"> SIGN UP:</p>	
  							<div class="form-group">
 								<input type="text" name="name" class="form-control input-lg" placeholder="Name">
 							</div>
