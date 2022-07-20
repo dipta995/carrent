@@ -4,6 +4,34 @@ if (isset($_SESSION['id'] )) {
 }else{
   header('Location:login.php');
 }
+if (isset($_GET['confirmid'])) {
+    $confirmid = $_GET['confirmid'];
+    $query = "SELECT * FROM orders WHERE Oid=$confirmid";
+    $result = $con->query($query); 
+        $value = mysqli_fetch_array($result);
+        $carid = $value['car_id'];
+        $driver_id = $value['driver_id'];
+    $editquery = "UPDATE orders  
+    SET
+    status       = '2'
+ WHERE Oid = $confirmid";
+    $edit = $con->query($editquery);
+    if ($edit) {
+        $editquery = "UPDATE cars  
+        SET
+        flag       = '0'
+     WHERE id = $carid";
+        $edit = $con->query($editquery);
+        $editquery = "UPDATE drivers  
+        SET
+        is_active       = 0
+     WHERE driver_id = $driver_id";
+        $edit = $con->query($editquery);
+            // echo "<script>window.location='car-tracking.php';</script>";
+        
+        echo "<script>window.location='orderlist.php';</script>";
+    }
+}
  ?>
 		
 	 <style>
@@ -83,7 +111,10 @@ if (isset($_SESSION['id'] )) {
 
                                         <?php } elseif ($value['status'] == 1) {
                                             echo "running";
-                                        } else {
+                                            ?>
+<a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info">Finish</a>
+
+                                       <?php } else {
                                             echo "Finished"; ?>
                                             <a href="car-single.php?carid=<?php echo $value['car_id']; ?>" class="btn btn-info">Ratting Us</a>
 

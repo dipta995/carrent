@@ -27,10 +27,10 @@ $result = $con->query($query);
 ?>
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Cars List <a class="btn btn-info" href="createcar.php">Create Car</a></h1>
+                        <h1 class="mt-4">Address</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Cars</li>
+                            <li class="breadcrumb-item active">Address</li>
                         </ol>
                         <div class="mb-4">
                             <form class="form-control" action="" method="post">
@@ -43,7 +43,7 @@ $result = $con->query($query);
                                     <input type="tel" name="phone" value="<?php  echo $info['phone']; ?>" class="form-control">
                                 </div>
                                 <div class="form-control">
-                                    <label for="">Address</label>
+                                    <label for="">Email</label>
                                     <input type="email" name="email" value="<?php  echo $info['email']; ?>" class="form-control">
                                 </div>
                                 <input type="submit" name="submit"  class="form-control btn btn-info">
