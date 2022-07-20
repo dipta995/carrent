@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Cars List <a class="btn btn-info" href="createcar.php">Create Car</a></h1>
+                        <h1 class="mt-4">Car List <a class="btn btn-info" href="createcar.php">Create Car</a></h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Cars</li>

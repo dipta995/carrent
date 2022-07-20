@@ -79,7 +79,7 @@ echo $datetime->format('Y-m-d'); ?>" class="form-control" placeholder="Dropup Lo
 <input type="time" id="appt" name="time"
        min="09:00" max="21:00" required>
 
-<small>Office hours are 9am to 11pm</small>
+<small>Office hours are 9am to 9pm</small>
                 </div>
                 <div class="form-group">
             <select class="form-control" required name="trip_loop" id="">
