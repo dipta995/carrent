@@ -78,7 +78,7 @@
 
                         ?>
                                 <tr>
-                                    <td><?php echo $value['id']; ?></td>
+                                    <td><?php echo $key+1; ?></td>
                                     <td><?php echo $value['name']; ?></td>
                                     <td><?php echo $value['image']; ?></td>
                                     <td><?php echo $value['comment']; ?></td>

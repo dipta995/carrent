@@ -17,7 +17,9 @@ $result = $con->query($query);
                     phone      = '$phone',
                     email       = '$email'";
                     if ($con->query($sql) === TRUE) {
-                    echo "<script>window.location='officeinfo.php';</script>";
+                        $msg = "<span class='success-msg'>Record Updated successfully</span>";
+
+                    // echo "<script>window.location='officeinfo.php';</script>";
                     } else {
                         echo "Error: " . $sql . "<br>" . $con->error;
                     }
@@ -33,6 +35,9 @@ $result = $con->query($query);
                             <li class="breadcrumb-item active">Cars</li>
                         </ol>
                         <div class="mb-4">
+                        <?php
+                        echo $msg;
+                        ?>
                             <form class="form-control" action="" method="post">
                                 <div >
                                     <label for="">Address</label>

@@ -191,7 +191,7 @@ echo "<script>window.location='index.php';</script>";
 							</div>
 
 							<div class="form-group">
-								<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+								<input type="email" name="email" class="form-control input-lg" placeholder="Email Address">
 							</div>
 							<div class="form-group">
 								<input type="number" min="0" name="phone" id="password" class="form-control input-lg" placeholder="Mobile NO ">

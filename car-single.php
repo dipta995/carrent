@@ -181,7 +181,7 @@
 													  
 										   ?>
 							   			<div class="review d-flex">
-									   		<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+									   		<div class="user-img" style="background-image: url(<?php echo $review['image']; ?>"></div>
 									   		<div class="desc">
 									   			<h4>
 									   				<span class="text-left"><?php echo $review['name'] ?></span>
@@ -198,6 +198,7 @@
 								   					</span>
 								   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
 									   			</p>
+												<p><?php echo $review['comment']; ?></p>
 									   			<p><?php echo $review['comment_at'] ?></p>
 									   		</div>
 									   	</div>
