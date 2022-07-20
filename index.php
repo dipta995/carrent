@@ -36,7 +36,7 @@
 				<div class="carousel-car owl-carousel">
 					<?php
 
-					$query = "SELECT * FROM cars  order by rand() limit 10";
+					$query = "SELECT * FROM cars WHERE flag=0 order by rand() limit 10";
 					$result = $con->query($query);
 					if ($result->num_rows > 0) {
 						foreach ($result as $key => $val) {
