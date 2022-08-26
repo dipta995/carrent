@@ -49,10 +49,15 @@ echo "<script>window.location='index.php';</script>";
                             echo $txt = "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }
                        
+                         elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
+		                echo $txt =  "<span class='error-msg'>Invalied Email</span>";  
+		                         
+			            } 
                          elseif ( strlen ($password) < 6) {  
 		                echo $txt =  "<span class='error-msg'>Password Minimum 6 Digit</span>";  
 		                         
-			            } elseif ( strlen ($phone) != 11) {  
+			            } 
+						elseif ( strlen ($phone) != 11) {  
 			                echo $txt =  "<span class='error-msg'>Phone Only 11 Digit</span>";  
 			                         
 			            }elseif ( strlen ($national_id) != 13) {  
@@ -84,20 +89,20 @@ echo "<script>window.location='index.php';</script>";
 			                echo $txt = "<span class='error-msg'>You can upload only:-".implode(', ', $permited)."</span>";
 			               }
 			               else{
-			                    // move_uploaded_file($file_temp, $move_image);
-
-								$query = "SELECT * FROM users WHERE email='$email'";
-								$result = $con->query($query);
-								if ($result->num_rows > 0) {
-									echo $txt = "<span class='error-msg'>Email Already in use</span>";
-
-								  }else{
-
-			               
-			                    $sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image,otp) values('$name','$email','$phone','$address','$password','$national_id','0','$uploaded_image','$time')";
-			                    if ($con->query($sql) === TRUE) {
-                       
-                            move_uploaded_file($tempnameone,$folder1);
+							   
+							   $query = "SELECT * FROM users WHERE email='$email'";
+							   $result = $con->query($query);
+							   if ($result->num_rows > 0) {
+								   echo $txt = "<span class='error-msg'>Email Already in use</span>";
+								   
+								}else{
+									
+									
+									$sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image,otp) values('$name','$email','$phone','$address','$password','$national_id','0','$uploaded_image','$time')";
+									if ($con->query($sql) === TRUE) {
+										
+										move_uploaded_file($file_temp, $move_image);
+                            // move_uploaded_file($tempnameone,$folder1);
 
 							require("mail/src/PHPMailer.php");
 							require("mail/src/SMTP.php");
@@ -132,9 +137,9 @@ echo "<script>window.location='index.php';</script>";
 							  }
 							
 
-                            echo "<script>window.location='login.php';</script>";
-		                            
-		                    echo $txt = "<span class='success-msg'>Check email and confirm</span>";
+							  
+							  echo $txt = "<span class='success-msg'>Check email and confirm</span>";
+							//   echo "<script>window.location='login.php';</script>";
 		                    } else {
 		                        echo $txt = "Error: " . $sql . "<br>" . $con->error__;
 		                    }
@@ -219,7 +224,7 @@ echo "<script>window.location='index.php';</script>";
 								</label>
 							  </div> -->
  							<div>
- 									  <input type="submit" name="create" class="btn btn-lg btn-primary   value="Register">
+ 									  <input type="submit" name="create" class="btn btn-lg btn-primary"   value="Register">
  							</div>
 						</fieldset>
 					</form>

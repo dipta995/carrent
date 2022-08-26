@@ -63,10 +63,36 @@ if (isset($_SESSION['id'] )) {
             <div class="col-md-8 block-9 mb-md-5">
               <form action="" method="post" class="bg-light p-5 contact-form">
                 <div class="form-group">
-                  <input type="text" required name="pickup_location" class="form-control" placeholder="Pickup Location">
+                <select name="pickup_location" required class="form-control">
+                  <option value="">--Choose Pickup Location --</option>
+                                    <?php
+                                     $query = "SELECT * FROM locations";
+                                     $result = $con->query($query);
+                                     if ($result->num_rows > 0) {
+                                         foreach ($result as $key => $location) {
+                                             
+                                    ?>
+                                    <option value="<?php echo $location['id'] ?>"><?php echo $location['location_name'] ?></option>
+                                    <?php
+                                         } }
+                                    ?>
+                                </select>
                 </div>
                 <div class="form-group">
-                  <input type="text" required name="dropup_location" class="form-control" placeholder="Dropup Location">
+                <select name="dropup_location" required class="form-control">
+                  <option value="">--Choose Dropup Location --</option>
+                                    <?php
+                                     $query = "SELECT * FROM locations";
+                                     $result = $con->query($query);
+                                     if ($result->num_rows > 0) {
+                                         foreach ($result as $key => $location) {
+                                             
+                                    ?>
+                                    <option value="<?php echo $location['id'] ?>"><?php echo $location['location_name'] ?></option>
+                                    <?php
+                                         } }
+                                    ?>
+                                </select>
                 </div>
                 <div class="form-group">
                 <label for="appt">Choose pickup time :</label>

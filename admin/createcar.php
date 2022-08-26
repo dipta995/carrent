@@ -141,8 +141,8 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
                                
-                                <select class="form-control" name="fuel">
-                                    <option>-- Choose Fuel Type --</option>
+                                <select class="form-control" required name="fuel">
+                                    <option value=""> -- Choose Fuel Type --</option>
                                     <option value="Desel">Desel</option>
                                     <option value="Petrol">Petrol</option>
                                     <option value="Octen">Octen</option>

@@ -48,7 +48,7 @@
                             }
                         }
 
-                        $query = "SELECT * FROM drivers where flag=0 Order By driver_id desc";
+                        $query = "SELECT * FROM drivers Order By driver_id desc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {

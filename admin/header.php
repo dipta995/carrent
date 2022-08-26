@@ -73,6 +73,10 @@ echo "<script>window.location='../login.php';</script>";
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                               Category
                             </a>
+                            <a class="nav-link" href="locations.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                              Location
+                            </a>
                             <a class="nav-link" href="cars.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                               Cars
