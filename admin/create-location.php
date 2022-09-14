@@ -1,10 +1,10 @@
 <?php include 'header.php'; ?>
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Create New Categor <ay class="btn btn-info" href="categories.php">Categories</ay></h1>
+        <h1 class="mt-4">Create New Locations <a class="btn btn-info" href="locations.php">Locations</a></h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-            <li class="breadcrumb-item active">Categories</li>
+            <li class="breadcrumb-item active">Locations</li>
         </ol>
         <div class="card mb-4">
             <div class="card-body">
@@ -18,17 +18,15 @@
                     // }
 
                     if (isset($_POST['submit'])) {
-                        $cat_name = $_POST['cat_name'];
+                        $location_name = $_POST['location_name'];
 
-                        if (empty($cat_name)) {
+                        if (empty($location_name)) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>";
                         } else {
-                            $sql = "INSERT INTO categories (cat_name)
-                            VALUES ('$cat_name')";
+                            $sql = "INSERT INTO locations (location_name)
+                            VALUES ('$location_name')";
 
                             if ($con->query($sql) === TRUE) {
-
-
                                 echo "<span class='success-msg'>New record created successfully</span>";
                             } else {
                                 echo "Error: " . $sql . "<br>" . $con->error;
@@ -40,8 +38,8 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
-                                <input name="cat_name" required class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
-                                <label for="inputFirstName">category name</label>
+                                <input name="location_name" required class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                <label for="inputFirstName">location name</label>
                             </div>
                         </div>
 
