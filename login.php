@@ -48,6 +48,12 @@ echo "<script>window.location='index.php';</script>";
                         if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($national_id)) {
                             echo $txt = "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }
+
+						elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
+							echo $txt =  "<span class='error-msg'>Invalied Email</span>";  
+									 
+							}
+	
                        
                          elseif ( strlen ($password) < 6) {  
 		                echo $txt =  "<span class='error-msg'>Password Minimum 6 Digit</span>";  
@@ -97,7 +103,7 @@ echo "<script>window.location='index.php';</script>";
 			                    $sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image,otp) values('$name','$email','$phone','$address','$password','$national_id','0','$uploaded_image','$time')";
 			                    if ($con->query($sql) === TRUE) {
                        
-                            move_uploaded_file($tempnameone,$folder1);
+									move_uploaded_file($file_temp, $move_image);
 
 							require("mail/src/PHPMailer.php");
 							require("mail/src/SMTP.php");
@@ -131,8 +137,6 @@ echo "<script>window.location='index.php';</script>";
 								   
 							  }
 							
-
-                            echo "<script>window.location='login.php';</script>";
 		                            
 		                    echo $txt = "<span class='success-msg'>Check email and confirm</span>";
 		                    } else {

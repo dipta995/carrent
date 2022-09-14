@@ -36,7 +36,7 @@ $result = $con->query($query);
                         </ol>
                         <div class="mb-4">
                         <?php
-                        echo $msg;
+                        //echo $msg;
                         ?>
                             <form class="form-control" action="" method="post">
                                 <div >
