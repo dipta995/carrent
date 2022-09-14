@@ -12,31 +12,31 @@
                 <table class="table table-striped" id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Customer name</th>
+                            <th>Sl</th>
+                            <th>Customer Name</th>
                             <th>Customer Phone</th>
-                            <th>Car model</th>
+                            <th>Car Model</th>
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
-                            <th>From/To</th>
-                            <th>Pick up Date Time</th>
-                            <th>Return status</th>
                             <th>Driver</th>
+                            <th>From/To</th>
+                            <th>Pick up (Date/Time)</th>
+                            <th>Return Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>#</th>
-                            <th>Customer name</th>
+                            <th>Sl</th>
+                            <th>Customer Name</th>
                             <th>Customer Phone</th>
-                            <th>Car model</th>
+                            <th>Car Model</th>
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
-                            <th>From/To</th>
-                            <th>Pick up Date Time</th>
-                            <th>Return status</th>
                             <th>Driver</th>
+                            <th>From/To</th>
+                            <th>Pick up (Date/Time)</th>
+                            <th>Return Status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -56,10 +56,10 @@
                         if (isset($_GET['confirmid'])) {
                             $confirmid = $_GET['confirmid'];
                             $query = "SELECT * FROM orders WHERE Oid=$confirmid";
-                            $result = $con->query($query); 
-                                $value = mysqli_fetch_array($result);
-                                $carid = $value['car_id'];
-                                $driver_id = $value['driver_id'];
+                            $result = $con->query($query);
+                            $value = mysqli_fetch_array($result);
+                            $carid = $value['car_id'];
+                            $driver_id = $value['driver_id'];
                             $editquery = "UPDATE orders  
                             SET
                             status       = '2'
@@ -69,15 +69,13 @@
                                 $editquery = "UPDATE cars  
                                 SET
                                 flag       = '0'
-                             WHERE id = $carid";
+                                WHERE id = $carid";
                                 $edit = $con->query($editquery);
                                 $editquery = "UPDATE drivers  
                                 SET
                                 is_active       = 0
-                             WHERE driver_id = $driver_id";
+                                WHERE driver_id = $driver_id";
                                 $edit = $con->query($editquery);
-                                    // echo "<script>window.location='car-tracking.php';</script>";
-                                
                                 echo "<script>window.location='last-rent.php';</script>";
                             }
                         }
@@ -94,49 +92,40 @@
                                     <td><?php echo $value['phone']; ?></td>
                                     <td><?php echo $value['model']; ?></td>
                                     <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
-                                    <td><?php echo $value['driver_food_charge']; ?> Per/Meal</td>
+                                    <td><?php echo $value['driver_food_charge']; ?> Taka/Meal</td>
+                                    <td><?php echo $value['driver_name'] . "<br>" . $value['driver_phone']; ?></td>
                                     <td><?php echo $value['pickup_location']; ?>/<?php echo $value['dropup_location']; ?></td>
                                     <td><?php echo $value['date']; ?>/<?php echo $value['time']; ?></td>
                                     <td>
                                         <?php
                                         if ($value['trip_loop'] == 0) {
-                                            echo "Not back";
+                                            echo "Not Back";
                                         } elseif ($value['trip_loop'] == 1) {
                                             echo "Return Home";
                                         } else {
-                                            echo "something went wrong";
+                                            echo "Something went wrong";
                                         }
                                         ?>
                                     </td>
+
                                     <td>
                                         <?php
                                         if ($value['status'] == 0) {
-                                            echo "Pending";
+                                            echo "<button class='btn btn-primary btn-sm'>Pending</button>";
                                         } elseif ($value['status'] == 1) {
-                                            echo "running";
+                                            echo "<button class='btn btn-primary btn-sm'>Running</button>";
                                         } else {
-                                            echo "Nice trip";
+                                            echo "<button class='btn btn-primary btn-sm'>Nice Trip</button>";
                                         }
                                         ?>
 
-                                    </td>
-                                    <td>
-                                    <?php echo $value['driver_name']."<br>".$value['driver_phone']; ?>
-                                    </td>
-
-                                    <td>
-                                        <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info">Finish</a>
-                                       
-                   
+                                        <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
                                     </td>
                                 </tr>
                         <?php }
                         } ?>
-
-
                     </tbody>
                 </table>
-
             </div>
         </div>
         <div style="height: 100vh"></div>

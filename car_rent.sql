@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 26, 2022 at 11:30 AM
+-- Generation Time: Sep 14, 2022 at 05:02 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -65,11 +65,11 @@ CREATE TABLE `cars` (
 
 INSERT INTO `cars` (`id`, `cat_id`, `name`, `model`, `mileage`, `seats`, `fuel`, `service_charge`, `driver_food_charge`, `description`, `image`, `transmission`, `airconditions`, `child_seat`, `gps`, `luggage`, `music`, `seat_belt`, `sleeping_bed`, `water`, `bluetooth`, `onboard_computer`, `audio_input`, `long_term_trips`, `car_kit`, `remote_central_locking`, `climate_control`, `flag`, `created_at`) VALUES
 (4, 1, 'RANGE ROVER', ' EVOQUE', '30', 3, 'Desel', '5000', '500', '                 Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.\r\n\r\nWhen she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.', 'image/0e1617e230.jpg', 'Manual', '1', '0', 1, '3', '1', 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 3, '2021-12-28 13:28:49'),
-(5, 2, 'RANGE ROVER s', ' EVOQUE', '22', 2, 'Octen', '2222', '22', '  22', 'image/dc6e22db79.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 3, '2021-12-28 15:57:58'),
-(6, 1, 'RANGE ROVER s', ' EVOQUE', '22', 3, 'Octen', '2222', '22', '   22', 'image/c957b46029.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, '2021-12-28 15:58:09'),
-(7, 2, 'RANGE ROVER s', ' EVOQUE', '22', 2, 'Octen', '2222', '22', ' 22', 'image/261548be03.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, '2021-12-28 15:58:29'),
-(8, 1, 'range rover', 'fdsf', '12', 2, 'Petrol', '2345', '222', '   sfv', 'image/cd19fc167b.jpg', 'Manual', '0', '0', 0, '3', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, '2022-05-18 17:56:27'),
-(9, 2, 'Haley', 'Perkins', '69', 2, 'Desel', '86', '75', '   Quis laborum enim ma', 'image/ab4bc45d62.jpg', 'Manual', '1', '1', 1, '42', '0', 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, '2022-08-26 07:15:45');
+(5, 2, 'RANGE ROVER', ' EVOQUE', '22', 2, 'Octen', '2222', '22', 'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.', 'image/dc6e22db79.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 3, '2021-12-28 15:57:58'),
+(6, 1, 'RANGE ROVER', ' EVOQUE', '22', 3, 'Octen', '2222', '22', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.', 'image/c957b46029.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, '2021-12-28 15:58:09'),
+(7, 2, 'RANGE ROVER', ' EVOQUE', '22', 2, 'Octen', '2222', '22', 'The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.', 'image/261548be03.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, '2021-12-28 15:58:29'),
+(8, 1, 'RANGE ROVER', ' EVOQUE', '12', 2, 'Petrol', '2345', '22', 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.', 'image/cd19fc167b.jpg', 'Manual', '0', '0', 0, '3', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, '2022-05-18 17:56:27'),
+(9, 2, 'Haley', 'Perkins', '69', 2, 'Desel', '86', '75', 'Quis laborum enim ma', 'image/ab4bc45d62.jpg', 'Manual', '1', '1', 1, '42', '0', 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, '2022-08-26 07:15:45');
 
 -- --------------------------------------------------------
 
@@ -112,8 +112,8 @@ CREATE TABLE `drivers` (
 --
 
 INSERT INTO `drivers` (`driver_id`, `driver_name`, `driver_phone`, `driver_license`, `driver_address`, `is_active`, `join_at`, `flag`) VALUES
-(1, 'mr Ajgor', '12345678987', '444455556661', 'dsfsdv', 0, '2022-05-22 15:29:56', 0),
-(2, 'Mr Ahsan Habib', '12345678905', '44445555666', 'dhaka ', 0, '2022-06-15 13:55:09', 1);
+(1, 'Mr Ajgor', '12345678987', '444455556661', 'Dhaka', 1, '2022-05-22 15:29:56', 0),
+(2, 'Mr Ahsan Habib', '12345678905', '44445555666', 'Dhaka ', 0, '2022-06-15 13:55:09', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,13 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `location_name`) VALUES
-(1, 'Carissas');
+(1, 'Dhaka'),
+(2, 'Chittagong'),
+(3, 'Narayanganj'),
+(4, 'Shantinagar'),
+(5, 'Malibag'),
+(6, 'Rajarbag'),
+(7, 'Rampura');
 
 -- --------------------------------------------------------
 
@@ -168,6 +174,7 @@ CREATE TABLE `orders` (
   `date` varchar(191) NOT NULL,
   `time` varchar(191) NOT NULL,
   `trip_loop` tinyint(4) NOT NULL,
+  `payment_status` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -176,11 +183,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `driver_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `status`, `created_at`) VALUES
-(9, 5, 2, 0, 'ju', 'loo', '2022-01-16', '11:53', 0, 0, '2022-01-14 15:54:53'),
-(11, 7, 2, 1, 'bonosree b block', 'rasahi', '2022-03-31', '14:33', 1, 2, '2022-03-28 16:33:51'),
-(12, 5, 5, 1, 'fh fh ghj', 'loo', '2022-05-23', '09:03', 0, 2, '2022-05-22 16:00:25'),
-(13, 6, 3, 0, 'Dolorem maxime qui e', 'Ut ipsam corporis mo', '2022-07-21', '12:46', 1, 2, '2022-07-20 08:16:50');
+INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `driver_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `payment_status`, `status`, `created_at`) VALUES
+(19, 6, 3, 1, 'Chittagong', 'Dhaka', '2022-09-16', '10:00', 0, 1, 2, '2022-09-14 14:14:21'),
+(20, 6, 3, 1, 'Narayanganj', 'Shantinagar', '2022-09-16', '10:00', 1, 1, 2, '2022-09-14 14:49:41'),
+(21, 7, 3, 1, 'Shantinagar', 'Rampura', '2022-09-16', '12:50', 0, 1, 1, '2022-09-14 14:53:49');
 
 -- --------------------------------------------------------
 
@@ -256,7 +262,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `password`, `national_id`, `image`, `otp`, `auth_check`, `flag`, `created_at`) VALUES
 (2, 'Dipta Dey', 'dipta95@gmail.com', '01632315608', 'dhaka', '12345678', 2147483647, 'image/c957b46029.jpg', NULL, 1, 1, '2021-12-18 15:18:23'),
-(3, 'da', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 2147483647, 'image/5951fdd4d9.jpg', 1234567, 1, 0, '2022-01-10 13:51:27'),
+(3, 'Dan', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 2147483647, 'image/5951fdd4d9.jpg', 1234567, 1, 0, '2022-01-10 13:51:27'),
 (5, 'JUSTIN', 'dipta995@gmail.com', '01632315608', 'fdsssdf', '12345678', 2147483647, 'image/45e46c917a.jpg', 1652590218, 1, 1, '2022-05-15 04:50:18'),
 (6, 'Nora Miles', 'jegerab@mailinator.com', '11111122223', 'Dolorum assumenda vo', '12345678', 2147483647, 'image/b4d21e8ce3.png', 1661500401, 0, 0, '2022-08-26 07:53:21'),
 (7, 'Nora Miles', 'jegerabyy@mailinator.com', '11111122223', 'Dolorum assumenda vo', '12345678', 2147483647, 'image/7fefe3c5a1.png', 1661500440, 0, 0, '2022-08-26 07:54:00');
@@ -340,13 +346,13 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `reviews`

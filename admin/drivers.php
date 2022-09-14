@@ -12,7 +12,7 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Sl</th>
                             <th>Name</th>
                             <th>Phone</th>
                             <th>License</th>
@@ -23,7 +23,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>#</th>
+                            <th>Sl</th>
                             <th>Name</th>
                             <th>Phone</th>
                             <th>License</th>
