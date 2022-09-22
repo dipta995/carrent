@@ -60,10 +60,12 @@
                             $value = mysqli_fetch_array($result);
                             $carid = $value['car_id'];
                             $driver_id = $value['driver_id'];
+                            $endtime = date("Y-m-d");
                             $editquery = "UPDATE orders  
                             SET
-                            status       = '2'
-                         WHERE Oid = $confirmid";
+                            status       = '2',
+                            finished_at = now()
+                            WHERE Oid = $confirmid";
                             $edit = $con->query($editquery);
                             if ($edit) {
                                 $editquery = "UPDATE cars  

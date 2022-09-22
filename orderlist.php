@@ -10,9 +10,11 @@ if (isset($_GET['confirmid'])) {
     $value = mysqli_fetch_array($result);
     $carid = $value['car_id'];
     $driver_id = $value['driver_id'];
+    $endtime = date("Y-m-d"); 
     $editquery = "UPDATE orders  
     SET
-    status       = '2'
+    status       = '2',
+    finished_at = $endtime
     WHERE Oid = $confirmid";
     $edit = $con->query($editquery);
     if ($edit) {
@@ -32,22 +34,7 @@ if (isset($_GET['confirmid'])) {
 }
 ?>
 
-<?php 
-if (isset($_GET['paymentid'])) {
-    $paymentid = $_GET['paymentid'];
-    $query = "SELECT * FROM orders WHERE Oid=$paymentid";
-    $result = $con->query($query);
-    $value = mysqli_fetch_array($result);
-    $editquery = "UPDATE orders  
-    SET
-    payment_status   = '1'
-    WHERE Oid        = $paymentid";
-    $edit = $con->query($editquery);
-    if ($edit) {
-        echo "<script>window.location='orderlist.php';</script>";
-    }
-}
-?>
+
 
 <style>
     .table thead th {
@@ -128,11 +115,7 @@ if (isset($_GET['paymentid'])) {
                                         <?php } elseif ($value['status'] == 1) {
                                             echo "<button class='btn btn-primary btn-sm'>Running</button>";
                                         ?>
-                                            <?php if ($value['payment_status'] == 0) { ?>
-                                                <a href="?paymentid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Pay</a>
-                                            <?php } else {
-                                                echo "<button class='btn btn-success btn-sm'>Paid</button>";
-                                            } ?>
+                                            
                                             <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
 
                                         <?php } else {

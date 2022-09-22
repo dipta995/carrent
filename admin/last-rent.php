@@ -53,10 +53,12 @@
 
                         if (isset($_GET['confirmid'])) {
                             $confirmid = $_GET['confirmid'];
+                            $endtimedate("Y-m-d");
                             $editquery = "UPDATE orders  
                             SET
-                            status       = '2'
-                         WHERE id = $confirmid";
+                            status       = '2',
+                            finished_at = $endtime
+                            WHERE Oid = $confirmid";
                             $edit = $con->query($editquery);
                             if ($edit) {
                                 echo "<script>window.location='last-rent.php';</script>";
@@ -87,6 +89,7 @@
                                         } else {
                                              
                                         }
+                                        echo "<br><strong>".$value['finished_at'] ."</strong>";
                                         ?>
                                     </td>
                                     <td>

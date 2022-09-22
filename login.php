@@ -61,23 +61,39 @@ include 'db.php';
 if (isset($_SESSION['active'])=="active") {
 echo "<script>window.location='index.php';</script>";
 }
+
+// Registration
 			  if(isset($_POST['create'])){
-                        $name = $_POST['name'];
-                        $email = $_POST['email'];
-                        $phone = $_POST['phone'];
-                        $password = $_POST['password'];
-                        $address = mysqli_real_escape_string($con,$_POST['address']);;
-                        $national_id = $_POST['national_id'];     
+                        $name =  mysqli_real_escape_string($con,$_POST['name']);
+                        $email =  mysqli_real_escape_string($con,$_POST['email']);
+                        $phone =  mysqli_real_escape_string($con,$_POST['phone']);
+                        $password =  mysqli_real_escape_string($con,$_POST['password']);
+                        $address = mysqli_real_escape_string($con,$_POST['address']);
+                        $nationalid =  mysqli_real_escape_string($con,$_POST['nationalid']);     
 						$time = time();                 
-                            
-                        if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($national_id)) {
+                            $select  = "SELECT * FROM users WHERE email='$email'";
+						
+							$checkselect = $con->query($select);
+							$phonecheck  = "SELECT * FROM users WHERE phone='$phone'";
+							$chekcphone = $con->query($phonecheck);
+
+					
+
+
+                        if (empty($name) ||empty($phone) | empty($password) ||empty($address) ||empty($nationalid)) {
                             echo $txt = "<span class='error-msg'>Field Must Not be Empty</span>"; 
                         }
 
 						elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {  
 							echo $txt =  "<span class='error-msg'>Invalied Email</span>";  
 									 
-							}
+							}elseif ($checkselect->num_rows > 0) {
+								echo $txt =  "<span class='error-msg'>Email Exist</span>";
+		
+							 }elseif ($chekcphone->num_rows > 0) {
+								echo $txt =  "<span class='error-msg'>Phone No exist</span>";
+		
+							 }
 	
                        
                          elseif ( strlen ($password) < 6) {  
@@ -86,7 +102,7 @@ echo "<script>window.location='index.php';</script>";
 			            } elseif ( strlen ($phone) != 11) {  
 			                echo $txt =  "<span class='error-msg'>Phone Only 11 Digit</span>";  
 			                         
-			            }elseif ( strlen ($national_id) != 13) {  
+			            }elseif ( strlen ($nationalid) != 13) {  
 			                echo $txt =  "<span class='error-msg'>National Id will 13 Digit only</span>";  
 			                         
 			            }elseif (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
@@ -118,28 +134,28 @@ echo "<script>window.location='index.php';</script>";
 			                    // move_uploaded_file($file_temp, $move_imag
 
 
-					if (empty($name) || empty($phone) | empty($password) || empty($address) || empty($national_id)) {
-						echo $txt = "<span class='error-msg'>Field Must Not be Empty</span>";
-					} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-						echo $txt =  "<span class='error-msg'>Invalied Email</span>";
-					} elseif (strlen($password) < 6) {
-						echo $txt =  "<span class='error-msg'>Password Minimum 6 Digit</span>";
-					} elseif (strlen($phone) != 11) {
-						echo $txt =  "<span class='error-msg'>Phone Only 11 Digit</span>";
-					} elseif (strlen($national_id) != 13) {
-						echo $txt =  "<span class='error-msg'>National Id will 13 Digit only</span>";
-					} elseif (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-						echo $txt =  "<span class='error-msg'>Only letters and white space allowed in name</span>";
-					} else {
+					// if (empty($name) || empty($phone) | empty($password) || empty($address) || empty($nationalid)) {
+					// 	echo $txt = "<span class='error-msg'>Field Must Not be Empty</span>";
+					// } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+					// 	echo $txt =  "<span class='error-msg'>Invalied Email</span>";
+					// } elseif (strlen($password) < 6) {
+					// 	echo $txt =  "<span class='error-msg'>Password Minimum 6 Digit</span>";
+					// } elseif (strlen($phone) != 11) {
+					// 	echo $txt =  "<span class='error-msg'>Phone Only 11 Digit</span>";
+					// } elseif (strlen($nationalid) != 13) {
+					// 	echo $txt =  "<span class='error-msg'>National Id will 13 Digit only</span>";
+					// } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+					// 	echo $txt =  "<span class='error-msg'>Only letters and white space allowed in name</span>";
+					// } else {
 
-						$permited  = array('jpg', 'jpeg', 'png', 'gif');
-						$file_name = $_FILES['image']['name'];
-						$file_size = $_FILES['image']['size'];
-						$file_temp = $_FILES['image']['tmp_name'];
+						// $permited  = array('jpg', 'jpeg', 'png', 'gif');
+						// $file_name = $_FILES['image']['name'];
+						// $file_size = $_FILES['image']['size'];
+						// $file_temp = $_FILES['image']['tmp_name'];
 
 
 			               
-			                    $sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image,otp) values('$name','$email','$phone','$address','$password','$national_id','0','$uploaded_image','$time')";
+			                    $sql = "INSERT into  users (name,email,phone,address,password,national_id,flag,image,otp) values('$name','$email','$phone','$address','$password','$nationalid','0','$uploaded_image','$time')";
 			                    if ($con->query($sql) === TRUE) {
                        
 									move_uploaded_file($file_temp, $move_image);
@@ -187,9 +203,12 @@ echo "<script>window.location='index.php';</script>";
 
 								}
 							}
-						}
+						// }
 				// 	}
 				// }
+
+
+				// For Login
 
 				if (isset($_POST['login'])) {
 					$email = $_POST['email'];
@@ -240,7 +259,7 @@ echo "<script>window.location='index.php';</script>";
 								<input type="number" min="0" name="phone" id="password" class="form-control input-lg" placeholder="Mobile NO ">
 							</div>
 							<div class="form-group">
-								<input type="number" min="0" name="national_id" id="password" class="form-control input-lg" placeholder="National Identity NO">
+								<input type="number" min="0" name="nationalid" id="password" class="form-control input-lg" placeholder="National Identity NO">
 							</div>
 
 							<div class="form-group">
