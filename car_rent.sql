@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2022 at 05:02 PM
+-- Generation Time: Sep 22, 2022 at 07:38 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -67,7 +67,7 @@ INSERT INTO `cars` (`id`, `cat_id`, `name`, `model`, `mileage`, `seats`, `fuel`,
 (4, 1, 'RANGE ROVER', ' EVOQUE', '30', 3, 'Desel', '5000', '500', '                 Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.\r\n\r\nWhen she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.', 'image/0e1617e230.jpg', 'Manual', '1', '0', 1, '3', '1', 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 3, '2021-12-28 13:28:49'),
 (5, 2, 'RANGE ROVER', ' EVOQUE', '22', 2, 'Octen', '2222', '22', 'A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine.', 'image/dc6e22db79.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 3, '2021-12-28 15:57:58'),
 (6, 1, 'RANGE ROVER', ' EVOQUE', '22', 3, 'Octen', '2222', '22', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.', 'image/c957b46029.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, '2021-12-28 15:58:09'),
-(7, 2, 'RANGE ROVER', ' EVOQUE', '22', 2, 'Octen', '2222', '22', 'The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.', 'image/261548be03.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, '2021-12-28 15:58:29'),
+(7, 2, 'RANGE ROVER', ' EVOQUE', '22', 2, 'Octen', '2222', '22', 'The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary.', 'image/261548be03.jpg', 'Manual', '0', '1', 0, '2', '0', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, '2021-12-28 15:58:29'),
 (8, 1, 'RANGE ROVER', ' EVOQUE', '12', 2, 'Petrol', '2345', '22', 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.', 'image/cd19fc167b.jpg', 'Manual', '0', '0', 0, '3', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, '2022-05-18 17:56:27'),
 (9, 2, 'Haley', 'Perkins', '69', 2, 'Desel', '86', '75', 'Quis laborum enim ma', 'image/ab4bc45d62.jpg', 'Manual', '1', '1', 1, '42', '0', 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, '2022-08-26 07:15:45');
 
@@ -112,8 +112,8 @@ CREATE TABLE `drivers` (
 --
 
 INSERT INTO `drivers` (`driver_id`, `driver_name`, `driver_phone`, `driver_license`, `driver_address`, `is_active`, `join_at`, `flag`) VALUES
-(1, 'Mr Ajgor', '12345678987', '444455556661', 'Dhaka', 1, '2022-05-22 15:29:56', 0),
-(2, 'Mr Ahsan Habib', '12345678905', '44445555666', 'Dhaka ', 0, '2022-06-15 13:55:09', 1);
+(1, 'Mr Ajgor', '12345678987', '444455556661', 'Dhaka', 0, '2022-05-22 15:29:56', 0),
+(2, 'Mr Ahsan Habib', '12345678905', '44445555666', 'Dhaka ', 0, '2022-06-15 13:55:09', 0);
 
 -- --------------------------------------------------------
 
@@ -176,17 +176,19 @@ CREATE TABLE `orders` (
   `trip_loop` tinyint(4) NOT NULL,
   `payment_status` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `finished_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `driver_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `payment_status`, `status`, `created_at`) VALUES
-(19, 6, 3, 1, 'Chittagong', 'Dhaka', '2022-09-16', '10:00', 0, 1, 2, '2022-09-14 14:14:21'),
-(20, 6, 3, 1, 'Narayanganj', 'Shantinagar', '2022-09-16', '10:00', 1, 1, 2, '2022-09-14 14:49:41'),
-(21, 7, 3, 1, 'Shantinagar', 'Rampura', '2022-09-16', '12:50', 0, 1, 1, '2022-09-14 14:53:49');
+INSERT INTO `orders` (`Oid`, `car_id`, `user_id`, `driver_id`, `pickup_location`, `dropup_location`, `date`, `time`, `trip_loop`, `payment_status`, `status`, `created_at`, `finished_at`) VALUES
+(19, 6, 3, 1, 'Chittagong', 'Dhaka', '2022-09-16', '10:00', 0, 1, 2, '2022-09-14 14:14:21', NULL),
+(20, 6, 3, 1, 'Narayanganj', 'Shantinagar', '2022-09-16', '10:00', 1, 1, 2, '2022-09-14 14:49:41', NULL),
+(21, 7, 3, 1, 'Shantinagar', 'Rampura', '2022-09-16', '12:50', 0, 1, 2, '2022-09-14 14:53:49', NULL),
+(22, 9, 5, 1, 'Rajarbag', 'Chittagong', '2022-09-22', '09:21', 0, 1, 2, '2022-09-21 18:26:33', '2022-09-22 17:34:01');
 
 -- --------------------------------------------------------
 
@@ -212,7 +214,8 @@ CREATE TABLE `reviews` (
 INSERT INTO `reviews` (`id`, `car_id`, `user_id`, `rat`, `comment`, `replay`, `comment_at`, `replay_at`) VALUES
 (2, 5, 2, 3, 'mmmm', NULL, NULL, NULL),
 (3, 7, 3, 5, 'ff', NULL, NULL, NULL),
-(4, 6, 3, 4, 'f', NULL, NULL, NULL);
+(4, 6, 3, 4, 'f', NULL, NULL, NULL),
+(5, 9, 5, 4, 'hfyf hjgy', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -248,8 +251,8 @@ CREATE TABLE `users` (
   `phone` varchar(100) NOT NULL,
   `address` text NOT NULL,
   `password` varchar(150) NOT NULL,
-  `national_id` int(11) NOT NULL,
   `image` varchar(155) NOT NULL,
+  `national_id` varchar(191) DEFAULT NULL,
   `otp` int(11) DEFAULT NULL,
   `auth_check` int(11) NOT NULL DEFAULT 0,
   `flag` tinyint(4) NOT NULL,
@@ -260,12 +263,22 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `password`, `national_id`, `image`, `otp`, `auth_check`, `flag`, `created_at`) VALUES
-(2, 'Dipta Dey', 'dipta95@gmail.com', '01632315608', 'dhaka', '12345678', 2147483647, 'image/c957b46029.jpg', NULL, 1, 1, '2021-12-18 15:18:23'),
-(3, 'Dan', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 2147483647, 'image/5951fdd4d9.jpg', 1234567, 1, 0, '2022-01-10 13:51:27'),
-(5, 'JUSTIN', 'dipta995@gmail.com', '01632315608', 'fdsssdf', '12345678', 2147483647, 'image/45e46c917a.jpg', 1652590218, 1, 1, '2022-05-15 04:50:18'),
-(6, 'Nora Miles', 'jegerab@mailinator.com', '11111122223', 'Dolorum assumenda vo', '12345678', 2147483647, 'image/b4d21e8ce3.png', 1661500401, 0, 0, '2022-08-26 07:53:21'),
-(7, 'Nora Miles', 'jegerabyy@mailinator.com', '11111122223', 'Dolorum assumenda vo', '12345678', 2147483647, 'image/7fefe3c5a1.png', 1661500440, 0, 0, '2022-08-26 07:54:00');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `password`, `image`, `national_id`, `otp`, `auth_check`, `flag`, `created_at`) VALUES
+(2, 'Dipta Dey', 'dipta95@gmail.com', '01632315608', 'dhaka', '12345678', 'image/c957b46029.jpg', NULL, NULL, 1, 1, '2021-12-18 15:18:23'),
+(3, 'Dan', 'test@gmail.com', '01632315609', 'uyuu', '12345678', 'image/5951fdd4d9.jpg', NULL, 1234567, 1, 0, '2022-01-10 13:51:27'),
+(5, 'JUSTIN', 'dipta995@gmail.com', '01632315608', 'fdsssdf', '12345678', 'image/45e46c917a.jpg', NULL, 1652590218, 1, 1, '2022-05-15 04:50:18'),
+(6, 'Nora Miles', 'jegerab@mailinator.com', '11111122223', 'Dolorum assumenda vo', '12345678', 'image/b4d21e8ce3.png', NULL, 1661500401, 0, 0, '2022-08-26 07:53:21'),
+(7, 'Nora Miles', 'jegerabyy@mailinator.com', '11111122223', 'Dolorum assumenda vo', '12345678', 'image/7fefe3c5a1.png', NULL, 1661500440, 0, 0, '2022-08-26 07:54:00'),
+(8, 'Dalton Contreras', 'subesuqiwo@mailinator.com', '01624472711', 'Rerum veniam omnis ', '12345678', 'image/dc31326773.png', NULL, 1663864491, 0, 0, '2022-09-22 16:34:51'),
+(9, 'Dalton Contreras', 'subesuqiwo@mailinator.com', '01624472715', 'Rerum veniam omnis ', '12345678', 'image/cb6b67d5cc.png', NULL, 1663864662, 0, 0, '2022-09-22 16:37:42'),
+(10, 'Dalton Contreras', 'subesuqiwo@mailinator.com', '01624472718', 'Rerum veniam omnis ', '12345678', 'image/e84c41f26b.png', NULL, 1663864830, 0, 0, '2022-09-22 16:40:30'),
+(11, 'Dalton Contreras', 'subesuqiwo@mailinator.com', '01624472718', 'Rerum veniam omnis ', '12345678', 'image/2f426f6f1b.png', NULL, 1663864888, 0, 0, '2022-09-22 16:41:28'),
+(12, 'Dalton Contreras', 'subesuqiwo@mailinator.com', '01624472718', 'Rerum veniam omnis ', '12345678', 'image/051bf7dbbf.png', NULL, 1663864911, 0, 0, '2022-09-22 16:41:51'),
+(13, 'Quin Gentry', 'sizadiqet@mailinator.com', '01624472748', 'Aut et ea nobis est ', '12345678', 'image/641bb6167d.png', NULL, 1663864989, 0, 0, '2022-09-22 16:43:09'),
+(14, 'Quin Gentry', 'sizadiqet@mailinator.com', '01624472748', 'Aut et ea nobis est ', '12345678', 'image/ec78ff60eb.png', '2809876545678', 1663865302, 0, 0, '2022-09-22 16:48:22'),
+(15, 'Dipta', 'dipta995@gmail.com', '01624472888', 'afsad', '12345678', 'image/37521e210c.png', '1234567876567', 1663865531, 0, 0, '2022-09-22 16:52:11'),
+(16, 'Dipta', 'dipta995@gmail.com', '01624472888', 'afsad', '12345678', 'image/10fa1197cd.png', '1234567876567', 1663865542, 0, 0, '2022-09-22 16:52:22'),
+(17, 'Sybil Medina', 'haqeniwy@mailinator.com', '36556677865', 'Voluptas qui quia au', 'Pa$$w0rd!', 'image/dc72d4b8e4.png', '2545456789098', 1663866473, 0, 0, '2022-09-22 17:07:53');
 
 --
 -- Indexes for dumped tables
@@ -352,13 +365,13 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
@@ -370,7 +383,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
