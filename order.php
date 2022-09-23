@@ -3,47 +3,48 @@
   } else {
     header('Location:login.php');
   }
-  if (empty($_GET['carid']) || $_GET['carid'] == NULL || !isset($_GET['carid'])) {
-    echo "<script>window.location='car.php';</script>";
-  } else {
-    $carid = $_GET['carid'];
-    $user_id = $_SESSION['id'];
-    $query = "SELECT * FROM cars WHERE id=$carid";
-    $result = $con->query($query);
-    if ($result->num_rows > 0) {
-      $value = mysqli_fetch_array($result);
-    }
+
    
- 
+  $carid = $_GET['carid'];
+  $user_id = $_SESSION['id'];
+  $query = "SELECT * FROM cars WHERE id=$carid";
+  $result = $con->query($query);
+    $value = mysqli_fetch_array($result);
+  
+      $car_id = $value['id'];
+
   if (isset($_POST['confirmorder'])) {
 
-    $car_id = $value['id'];
     $dropup_location = $_POST['dropup_location'];
     $pickup_location = $_POST['pickup_location'];
     $trip_loop = $_POST['trip_loop'];
     $date = $_POST['date'];
     $time = $_POST['time'];
-    $orderque = "SELECT * FROM orders WHERE car_id='$carid' AND user_id='$user_id' AND date = $date AND status=0";
+   
+
+    $orderque = "SELECT * FROM orders WHERE car_id='$carid' AND date = '$date' AND user_id='$user_id' AND status=0";
     $orderresult = $con->query($orderque);
 
-    $orderque1 = "SELECT * FROM orders WHERE car_id='$carid' AND  date = $date AND status IN(0, 1)";
+    // var_dump($orderque); 
+
+    $orderque1 = "SELECT * FROM orders WHERE car_id='$carid' AND date = '$date' AND status IN(0, 1)";
     $orderresult1 = $con->query($orderque1);
     if (empty($car_id)) {
       echo "Field must not be empty";
     } elseif ($orderresult->num_rows > 0) {
-      echo "You Already Booked this car";
+      echo "You Already Boked this car";
     } elseif ($orderresult1->num_rows > 0) {
       echo "Not Available Right Now";
     } else {
       $sql = "INSERT INTO orders (car_id,user_id,pickup_location,dropup_location,trip_loop,date,time,status)VALUES('$car_id','$user_id','$pickup_location','$dropup_location','$trip_loop','$date','$time',0)";
       if ($con->query($sql) === TRUE) {
-        // echo "<script>window.location='orderlist.php';</script>";
+        echo "<script>window.location='orderlist.php';</script>";
       } else {
         echo "something wrong";
       }
     }
   }
- }
+
   ?>
 
 
