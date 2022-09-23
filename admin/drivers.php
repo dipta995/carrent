@@ -48,7 +48,7 @@
                             }
                         }
 
-                        $query = "SELECT * FROM drivers Order By driver_id desc";
+                        $query = "SELECT * FROM drivers where flag=0 Order By driver_id desc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
@@ -60,7 +60,7 @@
                                     <td><?php echo $value['driver_phone']; ?></td>
                                     <td><?php echo $value['driver_license']; ?> </td>
                                     <td><?php echo $value['driver_address']; ?> </td>
-                                    <td><?php echo ($value['flag'] == 1) ? "<span style='color:red;'>Booked</spna>" : "<span style='color:green;'>Free</spna>"; ?></td>
+                                    <td><?php echo ($value['is_active'] == 1) ? "<span style='color:red;'>Booked</spna>" : "<span style='color:green;'>Free</spna>"; ?></td>
                                     <td>
                                         <a href="edit-driver.php?editid=<?php echo $value['driver_id']; ?>" class="btn btn-info">Edit</a>
                                         <a href="?delid=<?php echo $value['driver_id']; ?>" class="btn btn-danger">Delete</a>

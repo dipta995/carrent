@@ -14,7 +14,7 @@ if (isset($_GET['confirmid'])) {
     $editquery = "UPDATE orders  
     SET
     status       = '2',
-    finished_at = $endtime
+    finished_at =  now()
     WHERE Oid = $confirmid";
     $edit = $con->query($editquery);
     if ($edit) {
@@ -119,7 +119,7 @@ if (isset($_GET['confirmid'])) {
                                             <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
 
                                         <?php } else {
-                                            echo "<button class='btn btn-primary btn-sm'>Finished</button>"; ?>
+                                            echo "<strong>".$value['finished_at']. "</strong><button class='btn btn-primary btn-sm'>Finished</button>"; ?>
                                             <a href="car-single.php?carid=<?php echo $value['car_id']; ?>" class="btn btn-success btn-sm">Rating Us</a>
                                         <?php } ?>
                                     </td>

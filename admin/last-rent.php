@@ -57,7 +57,7 @@
                             $editquery = "UPDATE orders  
                             SET
                             status       = '2',
-                            finished_at = $endtime
+                            finished_at =  now()
                             WHERE Oid = $confirmid";
                             $edit = $con->query($editquery);
                             if ($edit) {
