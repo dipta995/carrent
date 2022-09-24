@@ -39,7 +39,7 @@
                             } elseif (strlen($driver_phone) != 11) {
                                 echo $txt =  "<span class='error-msg'>Phone number 11 Digit</span>";
                             } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $driver_name)) {
-                                echo $txt =  "<span class='error-msg'>Only letters and white space allowed</span>";
+                                echo $txt =  "<span class='error-msg'>Only letters and white space allowed in name </span>";
                             } else {
 
                                 $sql = "INSERT INTO drivers (driver_name,driver_phone,driver_license,driver_address)

@@ -15,7 +15,7 @@
                             <th>Sl</th>
                             <th>Title</th>
                             <th>Service Charge</th>
-                            <th>Milage</th>
+                            <th>Mileage</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -26,7 +26,7 @@
                             <th>Sl</th>
                             <th>Title</th>
                             <th>Service Charge</th>
-                            <th>Milage</th>
+                            <th>Mileage</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
