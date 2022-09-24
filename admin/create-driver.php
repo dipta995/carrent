@@ -66,13 +66,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
-                                <input name="driver_phone" required class="form-control" id="inputFirstName" type="number" placeholder="Enter your first name" />
+                                <input name="driver_phone" required required min="0" class="form-control" id="inputFirstName" type="number" placeholder="Enter your first name" />
                                 <label for="inputFirstName">Phone No</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
-                                <input name="driver_license" required class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                <input name="driver_license" required min="0" class="form-control" id="inputFirstName" type="number" placeholder="Enter your first name" />
                                 <label for="inputFirstName">Licence</label>
                             </div>
                         </div>

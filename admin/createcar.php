@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input name="seats" class="form-control" id="inputLastName" type="number" placeholder="Enter your last name" />
+                                <input name="seats" class="form-control" id="inputLastName" min="0" require type="number" placeholder="Enter your last name" />
                                 <label for="inputLastName">seats</label>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input name="service_charge" class="form-control" id="inputLastName" type="number" placeholder="Enter your last name" />
+                                <input name="service_charge" class="form-control" id="inputLastName" min="0" type="number" placeholder="Enter your last name" />
                                 <label for="inputLastName">Service Charge</label>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
-                                <input name="driver_food_charge" class="form-control" id="inputFirstName" type="number" placeholder="Enter your first name" />
+                                <input name="driver_food_charge" class="form-control" id="inputFirstName" min="0" type="number" placeholder="Enter your first name" />
                                 <label for="inputFirstName">Driver Food Charge</label>
                             </div>
                         </div>
