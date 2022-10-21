@@ -55,6 +55,7 @@ if (isset($_GET['confirmid'])) {
                             <th>Car Model</th>
                             <th>Service Charge</th>
                             <th>Driver Charge</th>
+                            <th class="desable-menu">Hours || Payment || Account No</th>
                             <th>From/To</th>
                             <th>Pickup (Date/Time)</th>
                             <th>Driver</th>
@@ -83,13 +84,28 @@ if (isset($_GET['confirmid'])) {
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
-
-                        ?>
+                                $total_time = round((strtotime($value['finished_at']) - strtotime($value['created_at']))/3600, 1);                        ?>
+                        
                                 <tr style="border: 2px solid #6197cd; text-align:center;">
                                     <td><?php echo $value['id']; ?></td>
                                     <td><?php echo $value['model']; ?></td>
                                     <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
                                     <td><?php echo $value['driver_food_charge']; ?> Taka/Meal</td>
+                                    <?php 
+                                    if($value['finished_at'] != null){ ?>
+                                    <style>
+                                        .desable-menu {
+                                             display: block;
+                                        }
+                                    </style>
+                                    <td><?php echo $total_time; ?> hours|| <?php echo $value['amount']; ?> Taka  || <?php echo (empty($value['account_no'])) ? "Cash": $value['account_no']; ?>  </td>
+                                    <?php }else{ ?>
+                                        <style>
+                                        .desable-menu {
+                                             display: none;
+                                        }
+                                    </style>
+                                    <?php } ?>
                                     <td><?php echo $value['pickup_location']; ?>/<?php echo $value['dropup_location']; ?></td>
                                     <td><?php echo $value['date']; ?>/<?php echo $value['time']; ?></td>
                                     <td>
@@ -116,7 +132,7 @@ if (isset($_GET['confirmid'])) {
                                             echo "<button class='btn btn-primary btn-sm'>Running</button>";
                                         ?>
                                             
-                                            <a href="?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
+                                            <a href="payment.php?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
 
                                         <?php } else {
                                             echo "<strong>".$value['finished_at']. "</strong><button class='btn btn-primary btn-sm'>Finished</button>"; ?>

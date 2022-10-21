@@ -17,7 +17,8 @@
                 $editquery = "UPDATE orders  
                 SET
                 status      = 1,
-                driver_id = $driver_id
+                driver_id = $driver_id,
+                created_at = now()
                 WHERE Oid = $editid";
                 $edit = $con->query($editquery);
 
