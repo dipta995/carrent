@@ -11,7 +11,9 @@ if(isset($_GET['confirmid'])){
    $query = "SELECT * FROM cars left join orders ON cars.id = orders.car_id WHERE orders.Oid=$confirmid";
    $value_order = mysqli_fetch_array( $con->query($query));
    $total_time = round((strtotime($value_order['finished_at']) - strtotime($value_order['created_at']))/3600, 1);
-
+if ($total_time <= 1) {
+    $total_time = 1;
+}
 
    $required_amount = $total_time* $value_order['service_charge'];
    
@@ -23,7 +25,10 @@ if (isset($_POST['submit'])) {
                         $account_no = $_POST['account_no'];
                         if (empty($payment_type)) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>";
-                        } else {
+                        }elseif ( strlen ($account_no) < 11) {  
+			                echo $txt =  "<span class='error-msg'>Account No mInimum 11 Digit</span>";  
+			                         
+			            } else {
 
     $query = "SELECT * FROM orders WHERE Oid=$confirmid";
     $result = $con->query($query);
@@ -49,8 +54,8 @@ if (isset($_POST['submit'])) {
         $edit = $con->query($editquery);
         $editquery = "UPDATE drivers  
         SET
-        is_active       = 0
-        WHERE driver_id = $driver_id";
+        is_active       = '0'
+        WHERE driver_id = '$driver_id'";
         $edit = $con->query($editquery);
         echo "<script>window.location='orderlist.php';</script>";
     }

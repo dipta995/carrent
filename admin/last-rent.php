@@ -64,11 +64,13 @@
                             }
                         }
 
-                        $query = "SELECT * FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN users ON users.id = orders.user_id where orders.status=2 Order By orders.Oid asc";
+                        $query = "SELECT orders.*,cars.*,users.*,orders.created_at as created_at,orders.finished_at as finished_at FROM orders LEFT JOIN cars ON cars.id = orders.car_id LEFT JOIN users ON users.id = orders.user_id where orders.status=2 Order By orders.Oid asc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
-                                $total_time = round((strtotime($value['finished_at']) - strtotime($value['created_at']))/3600, 1);                        ?>
+                                $total_time = round((strtotime($value['finished_at']) - strtotime($value['created_at']))/3600, 1);
+                                
+                                ?>
                                 <tr>
                                     <td><?php echo $value['id']; ?></td>
                                     <td><?php echo $value['name']; ?></td>

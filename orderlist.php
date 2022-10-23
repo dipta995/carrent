@@ -77,7 +77,7 @@ if (isset($_GET['confirmid'])) {
                             }
                         }
 
-                        $query = "SELECT * FROM orders LEFT JOIN cars 
+                        $query = "SELECT orders.*,cars.*,drivers.*,orders.created_at as created_at,orders.finished_at as finished_at FROM orders LEFT JOIN cars 
                         ON cars.id = orders.car_id LEFT JOIN drivers 
                         ON orders.driver_id = drivers.driver_id
                         where orders.user_id=$user_id Order By orders.status asc";
@@ -91,21 +91,13 @@ if (isset($_GET['confirmid'])) {
                                     <td><?php echo $value['model']; ?></td>
                                     <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
                                     <td><?php echo $value['driver_food_charge']; ?> Taka/Meal</td>
-                                    <?php 
-                                    if($value['finished_at'] != null){ ?>
-                                    <style>
-                                        .desable-menu {
-                                             display: block;
-                                        }
-                                    </style>
-                                    <td><?php echo $total_time; ?> hours|| <?php echo $value['amount']; ?> Taka  || <?php echo (empty($value['account_no'])) ? "Cash": $value['account_no']; ?>  </td>
-                                    <?php }else{ ?>
-                                        <style>
-                                        .desable-menu {
-                                             display: none;
-                                        }
-                                    </style>
-                                    <?php } ?>
+                                   <?php if($value['finished_at'] != null){ ?>
+                                
+                                <td><?php echo $total_time; ?> hours|| <?php echo $value['amount']; ?> Taka  || <?php echo (empty($value['account_no'])) ? "Cash": $value['account_no']; ?>  </td>
+                                <?php }else{ ?>
+                                    <td>N/A</td>
+                                </style>
+                                <?php } ?>
                                     <td><?php echo $value['pickup_location']; ?>/<?php echo $value['dropup_location']; ?></td>
                                     <td><?php echo $value['date']; ?>/<?php echo $value['time']; ?></td>
                                     <td>
