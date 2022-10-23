@@ -15,8 +15,9 @@
                             <th>Sl</th>
                             <th>Title</th>
                             <th>Service Charge</th>
-                            <th>Milage</th>
+                            <th>Mileage</th>
                             <th>Image</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -25,8 +26,9 @@
                             <th>Sl</th>
                             <th>Title</th>
                             <th>Service Charge</th>
-                            <th>Milage</th>
+                            <th>Mileage</th>
                             <th>Image</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -46,7 +48,7 @@
                             }
                         }
 
-                        $query = "SELECT * FROM cars where flag=0 Order By id desc";
+                        $query = "SELECT * FROM cars where flag IN(0, 1) Order By id desc";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
@@ -58,6 +60,7 @@
                                     <td><?php echo $value['service_charge']; ?> Taka/Hour</td>
                                     <td><?php echo $value['mileage']; ?> KM/L</td>
                                     <td><img style="height:60px;width: 60px;" src="../<?php echo $value['image']; ?>"></td>
+                                    <td><?php echo ($value['flag'] == 1) ? "<span style='color:red;'>Unpublished</spna>" : "<span style='color:green;'>Published</spna>"; ?></td>
 
                                     <td>
                                         <a href="editcar.php?editid=<?php echo $value['id']; ?>" class="btn btn-info">Edit</a>
