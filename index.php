@@ -6,7 +6,7 @@
 			<div class="col-lg-8 ftco-animate">
 				<div class="text w-100 text-center mb-md-5 pb-md-5">
 					<h1 class="mb-4">Fast &amp; Easy Way To Rent A Car</h1>
-					<p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts</p>
+					<p style="font-size: 18px;">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts.</p>
 					<a href="#" class="icon-wrap popup-vimeo d-flex align-items-center mt-4 justify-content-center">
 						<div class="icon d-flex align-items-center justify-content-center">
 							<span class="ion-ios-play"></span>
@@ -28,7 +28,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-12 heading-section text-center ftco-animate mb-5">
 				<span class="subheading">What we offer</span>
-				<h2 class="mb-2">Feeatured Vehicles</h2>
+				<h2 class="mb-2">Featured Vehicles</h2>
 			</div>
 		</div>
 		<div class="row">

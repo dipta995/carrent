@@ -99,7 +99,7 @@ $info = mysqli_fetch_array($result);
                 <input type="text" required class="form-control" name="name" placeholder="Your Name">
               </div>
               <div class="form-group">
-                <input type="number" required class="form-control" name="phone" placeholder="Your Phone">
+                <input type="number" required min="0" class="form-control" name="phone" placeholder="Your Phone">
               </div>
               <div class="form-group">
                 <input type="text" required class="form-control" name="subject" placeholder="Subject">
