@@ -10,7 +10,7 @@ if(isset($_GET['confirmid'])){
                     
    $query = "SELECT * FROM cars left join orders ON cars.id = orders.car_id WHERE orders.Oid=$confirmid";
    $value_order = mysqli_fetch_array( $con->query($query));
-   $total_time = round((strtotime($value_order['finished_at']) - strtotime($value_order['created_at']))/3600, 1);
+   $total_time = round((strtotime($value_order['finished_at']) - strtotime($value_order['date'] . $value_order['time']))/3600, 1);
    if ($total_time <= 1) {
     $total_time = 1;
 }

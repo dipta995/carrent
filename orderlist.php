@@ -84,7 +84,7 @@ if (isset($_GET['confirmid'])) {
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {
                             foreach ($result as $key => $value) {
-                                $total_time = round((strtotime($value['finished_at']) - strtotime($value['created_at']))/3600, 1);                        ?>
+                                $total_time = round((strtotime($value['finished_at']) - strtotime($value['date'] . $value['time']))/3600, 1);                        ?>
                         
                                 <tr style="border: 2px solid #6197cd; text-align:center;">
                                     <td><?php echo $value['id']; ?></td>
