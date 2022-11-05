@@ -84,16 +84,27 @@
 
                                     <td>
                                         <?php
+                                        $tz = 'Asia/Dhaka';
+                                        $tz_obj = new DateTimeZone($tz);
+                                        $today = new DateTime("now", $tz_obj);
+                                        $today_formatted = $today->format('Y-m-d H:i');
                                         if ($value['status'] == 0) {
                                             echo "<button class='btn btn-primary btn-sm'>Pending</button>";
                                         } elseif ($value['status'] == 1) {
-                                            echo "<button class='btn btn-primary btn-sm'>Running</button>";
+                                            if(strtotime($value['date'] . $value['time'])<strtotime($today_formatted)){
+                                                echo "<button class='btn btn-primary btn-sm'>Running</button>"; ?>
+                                               <a href="payment.php?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
+
+                                            <?php }else{
+                                                echo "<button class='btn btn-primary btn-sm'>Booked</button>";
+
+                                            }
+                                            // echo "<button class='btn btn-primary btn-sm'>Running</button>";
                                         } else {
                                             echo "<button class='btn btn-primary btn-sm'>Nice Trip</button>";
                                         }
                                         ?>
 
-                                        <a href="payment.php?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
                                     </td>
                                 </tr>
                         <?php }

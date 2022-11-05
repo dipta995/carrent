@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
                         $payment_type = mysqli_real_escape_string($con,$_POST['payment_type']);
                         $amount = $_POST['amount'];
                         $account_no = $_POST['account_no'];
+                        $ref = $_POST['ref'];
                         if (empty($payment_type)) {
                             echo "<span class='error-msg'>Field Must Not be Empty</span>";
                         }elseif ( strlen ($account_no) < 11) {  
@@ -40,6 +41,7 @@ if (isset($_POST['submit'])) {
     $editquery = "UPDATE orders  
     SET
     account_no       = '$account_no',
+    ref       = '$ref',
     payment_type       = '$payment_type',
     amount       = $amount,
     status       = '2',
@@ -93,6 +95,12 @@ if (isset($_POST['submit'])) {
                                 <label for="inputFirstName">Account No</label>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3 mb-md-0">
+                                 <input class="form-control" type="text" required name="ref" >
+                                <label for="inputFirstName">Transaction Number</label>
+                            </div>
+                        </div>
 
                         <div class="col-md-6">
                             <div class="form-floating mb-3 mb-md-0">
@@ -104,7 +112,7 @@ if (isset($_POST['submit'])) {
 
                         <div class="mt-4 mb-0">
                             <div class="d-grid">
-                                <button class="btn btn-primary btn-block" type="submit" name="submit">Create</button>
+                                <button class="btn btn-primary btn-block" type="submit" name="submit">Confirm</button>
                             </div>
                         </div>
                         </div>

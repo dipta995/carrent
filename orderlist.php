@@ -116,18 +116,29 @@ if (isset($_GET['confirmid'])) {
                                     </td>
                                     <td>
                                         <?php
+                                        $tz = 'Asia/Dhaka';
+                                        $tz_obj = new DateTimeZone($tz);
+                                        $today = new DateTime("now", $tz_obj);
+                                        $today_formatted = $today->format('Y-m-d H:i');
                                         if ($value['status'] == 0) {
                                             echo "<button class='btn btn-primary btn-sm'>Pending</button>"; ?>
                                             <a href="?delid=<?php echo $value['Oid']; ?>" class="btn btn-danger btn-sm">Cancel</a>
 
                                         <?php } elseif ($value['status'] == 1) {
-                                            echo "<button class='btn btn-primary btn-sm'>Running</button>";
+
+                                            if(strtotime($value['date'] . $value['time'])<strtotime($today_formatted)){
+                                                echo "<button class='btn btn-primary btn-sm'>Running</button>";
+                                            }else{
+                                                echo "<button class='btn btn-primary btn-sm'>Booked</button>";
+
+                                            }
+                                             if(strtotime($value['date'] . $value['time'])<strtotime($today_formatted)){
                                         ?>
                                             
                                             <a href="payment.php?confirmid=<?php echo $value['Oid']; ?>" class="btn btn-info btn-sm">Finish</a>
 
-                                        <?php } else {
-                                            echo "<strong>".$value['finished_at']. "</strong><button class='btn btn-primary btn-sm'>Finished</button>"; ?>
+                                        <?php } } else {
+                                            echo "<strong style='color:green;'>".$value['finished_at']. "</strong><button class='btn btn-primary btn-sm'>Finished</button>"; ?>
                                             <a href="car-single.php?carid=<?php echo $value['car_id']; ?>" class="btn btn-success btn-sm">Rating Us</a>
                                         <?php } ?>
                                     </td>
